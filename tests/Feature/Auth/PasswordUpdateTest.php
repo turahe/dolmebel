@@ -18,7 +18,7 @@ class PasswordUpdateTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->from('/profile')
-            ->put('/password', $data =  [
+            ->put('/password', $data = [
                 'current_password' => 'password',
                 'password' => 'Pa$$WordStr0nG123',
                 'password_confirmation' => 'Pa$$WordStr0nG123',
