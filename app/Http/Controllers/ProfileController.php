@@ -8,14 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Turahe\SEOTools\Contracts\Tools;
 
 class ProfileController extends Controller
 {
+    public function __construct(private Tools $meta) {}
+
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
+        $this->meta->setTitle(__('Edit Profile'));
+
         return view('profile.edit', [
             'user' => $request->user(),
         ]);

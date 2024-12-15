@@ -33,7 +33,7 @@
             </a>
             <a
                 class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="/"
+                href="{{ route("catalog") }}"
             >
                 {{ __("Catalog") }}
             </a>
@@ -54,7 +54,7 @@
         <div class="ml-auto flex gap-4 px-5">
             <a
                 class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="/"
+                href="{{ route("login") }}"
             >
                 {{ __("Login") }}
             </a>
@@ -63,7 +63,7 @@
 
             <a
                 class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="/"
+                href="{{ route("register") }}"
             >
                 {{ __("Sign Up") }}
             </a>

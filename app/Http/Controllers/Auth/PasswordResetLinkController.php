@@ -7,14 +7,19 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
+use Turahe\SEOTools\Contracts\Tools;
 
 class PasswordResetLinkController extends Controller
 {
+    public function __construct(private Tools $meta) {}
+
     /**
      * Display the password reset link request view.
      */
     public function create(): View
     {
+        $this->meta->setTitle(__('Forgot Password'));
+
         return view('auth.forgot-password');
     }
 

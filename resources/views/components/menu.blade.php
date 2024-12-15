@@ -111,7 +111,9 @@
         </form>
         <ul class="text-center font-medium">
             <li class="py-2"><a href="/">{{ __("Home") }}</a></li>
-            <li class="py-2"><a href="/">{{ __("Catalog") }}</a></li>
+            <li class="py-2">
+                <a href="{{ route("catalog") }}">{{ __("Catalog") }}</a>
+            </li>
             <li class="py-2"><a href="/">{{ __("About Us") }}</a></li>
             <li class="py-2"><a href="/">{{ __("Contact Us") }}</a></li>
         </ul>

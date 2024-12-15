@@ -1,20 +1,14 @@
-import "./bootstrap.js";
+import "./bootstrap";
 
-import "@splidejs/splide/dist/css/splide.min.css";
 import Splide from "@splidejs/splide";
+import "@splidejs/splide/css";
+
 import Alpine from "alpinejs";
-import { MeiliSearch } from "meilisearch";
+import mask from "@alpinejs/mask";
 window.Alpine = Alpine;
 
+Alpine.plugin(mask);
 Alpine.start();
-
-window.MeiliSearch = MeiliSearch;
-
-import search from "./components/search";
-
-window.components = {
-    search,
-};
 
 if (document.querySelector(".splide")) {
     let splide = new Splide(".splide", {

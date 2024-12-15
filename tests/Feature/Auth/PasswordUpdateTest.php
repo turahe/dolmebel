@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
@@ -13,35 +13,35 @@ class PasswordUpdateTest extends TestCase
 
     public function test_password_can_be_updated(): void
     {
-        $user = User::factory()->create();
+        $user = UserFactory::new()->create();
 
         $response = $this
             ->actingAs($user)
             ->from('/profile')
-            ->put('/password', [
+            ->put('/password', $data =  [
                 'current_password' => 'password',
-                'password' => 'new-password',
-                'password_confirmation' => 'new-password',
+                'password' => 'Pa$$WordStr0nG123',
+                'password_confirmation' => 'Pa$$WordStr0nG123',
             ]);
 
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
 
-        $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
+        $this->assertTrue(Hash::check($data['password'], $user->refresh()->password));
     }
 
     public function test_correct_password_must_be_provided_to_update_password(): void
     {
-        $user = User::factory()->create();
+        $user = UserFactory::new()->create();
 
         $response = $this
             ->actingAs($user)
             ->from('/profile')
             ->put('/password', [
                 'current_password' => 'wrong-password',
-                'password' => 'new-password',
-                'password_confirmation' => 'new-password',
+                'password' => 'Pa$$WordStr0nG123',
+                'password_confirmation' => 'Pa$$WordStr0nG123',
             ]);
 
         $response

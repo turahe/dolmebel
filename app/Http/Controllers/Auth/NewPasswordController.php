@@ -11,14 +11,19 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Turahe\SEOTools\Contracts\Tools;
 
 class NewPasswordController extends Controller
 {
+    public function __construct(private Tools $meta) {}
+
     /**
      * Display the password reset view.
      */
     public function create(Request $request): View
     {
+        $this->meta->setTitle(__('Reset Password'));
+
         return view('auth.reset-password', ['request' => $request]);
     }
 

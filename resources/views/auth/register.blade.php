@@ -1,21 +1,21 @@
-<x-guest-layout>
+<x-auth-layout>
     <form method="POST" action="{{ route("register") }}">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="username" :value="__('Username')" />
             <x-text-input
-                id="name"
+                id="username"
                 class="mt-1 block w-full"
                 type="text"
-                name="name"
-                :value="old('name')"
+                name="username"
+                :value="old('username')"
                 required
                 autofocus
-                autocomplete="name"
+                autocomplete="username"
             />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
@@ -84,4 +84,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-auth-layout>

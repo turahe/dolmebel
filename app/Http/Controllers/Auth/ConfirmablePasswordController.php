@@ -8,14 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Turahe\SEOTools\Contracts\Tools;
 
 class ConfirmablePasswordController extends Controller
 {
+    public function __construct(private Tools $meta) {}
+
     /**
      * Show the confirm password view.
      */
     public function show(): View
     {
+        $this->meta->setTitle(__('Confirm Password'));
+
         return view('auth.confirm-password');
     }
 

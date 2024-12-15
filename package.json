@@ -24,6 +24,7 @@
     "vite-plugin-pwa": "^0.21.1"
   },
   "dependencies": {
+    "@alpinejs/mask": "^3.14.7",
     "@splidejs/splide": "^4.1.4",
     "alpinejs": "^3.4.2",
     "meilisearch": "^0.46.0",

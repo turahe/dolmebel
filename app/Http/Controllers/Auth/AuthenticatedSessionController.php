@@ -8,14 +8,19 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Turahe\SEOTools\Contracts\Tools;
 
 class AuthenticatedSessionController extends Controller
 {
+    public function __construct(private Tools $meta) {}
+
     /**
      * Display the login view.
      */
     public function create(): View
     {
+        $this->meta->setTitle(__('Login'));
+
         return view('auth.login');
     }
 
