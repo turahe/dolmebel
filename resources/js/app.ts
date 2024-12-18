@@ -5,9 +5,9 @@ import "@splidejs/splide/css";
 
 import Alpine from "alpinejs";
 import mask from "@alpinejs/mask";
-import persist from '@alpinejs/persist'
+import persist from "@alpinejs/persist";
 
-Alpine.plugin(persist)
+Alpine.plugin(persist);
 Alpine.plugin(mask);
 window.Alpine = Alpine;
 Alpine.start();

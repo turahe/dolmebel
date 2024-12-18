@@ -9,8 +9,8 @@ use App\Models\Shop;
 use App\Models\Supplier;
 use Database\Factories\AddressFactory;
 use Database\Factories\BankFactory;
-use Database\Factories\SupplierFactory;
 use Database\Factories\ShopFactory;
+use Database\Factories\SupplierFactory;
 use Illuminate\Database\Seeder;
 use Turahe\Core\Enums\OrganizationType;
 

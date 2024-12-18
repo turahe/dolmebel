@@ -15,11 +15,13 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Concerns\HasPrice;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Scout\Searchable;
 use Turahe\Core\Concerns\HasTags;
 use Turahe\Likeable\Traits\Likeable;
@@ -79,6 +81,36 @@ class Product extends Model implements \Turahe\Likeable\Contracts\Likeable
         $array['options'] = $this->options;
 
         return $array;
+    }
+
+    protected function slug(): Attribute
+    {
+        return new Attribute(get: fn () => $this->post->slug);
+
+    }
+
+    protected function name(): Attribute
+    {
+        return new Attribute(get: fn () => $this->post->title);
+
+    }
+
+    /**
+     * Get the URL to the user's profile photo.
+     */
+    public function image(): Attribute
+    {
+        return Attribute::make(get: fn () => $this->hasMedia('image')
+            ? $this->getFirstMediaUrl('image')
+            : $this->defaultImageUrl())->shouldCache();
+    }
+
+    /**
+     * Get the default profile photo URL if no profile photo has been uploaded.
+     */
+    protected function defaultImageUrl(): string
+    {
+        return Storage::url('product-default.png');
     }
 
     public function post(): BelongsTo

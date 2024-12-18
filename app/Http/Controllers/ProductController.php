@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\ProductRepositoryInterface;
 use App\Models\Category;
 
 class ProductController extends Controller
@@ -14,5 +15,12 @@ class ProductController extends Controller
             'categories' => $categories,
         ]);
 
+    }
+
+    public function detail(string $slug)
+    {
+        $product = app(ProductRepositoryInterface::class)->getProductBySlug($slug);
+
+        return view('product.detail', compact('product'));
     }
 }

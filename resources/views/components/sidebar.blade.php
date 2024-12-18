@@ -1,11 +1,11 @@
 <aside
     :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
-    class="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
+    class="z-9999 w-72.5 absolute left-0 top-0 flex h-screen flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
     @click.outside="sidebarToggle = false"
 >
     <!-- SIDEBAR HEADER -->
-    <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <a href="{{ route('dashboard') }}">
+    <div class="py-5.5 lg:py-6.5 flex items-center justify-between gap-2 px-6">
+        <a href="{{ route("dashboard") }}">
             <x-application-logo class="h-10" />
         </a>
 
@@ -36,11 +36,13 @@
         <!-- Sidebar Menu -->
         <nav
             class="mt-5 px-4 py-4 lg:mt-9 lg:px-6"
-            x-data="{selected: $persist('Dashboard')}"
+            x-data="{ selected: $persist('Dashboard') }"
         >
             <!-- Menu Group -->
             <div>
-                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
+                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">
+                    MENU
+                </h3>
 
                 <ul class="mb-6 flex flex-col gap-1.5">
                     <!-- Menu Item Dashboard -->
@@ -108,7 +110,8 @@
                                         class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                         href="index.html"
                                         :class="page === 'ecommerce' && '!text-white'"
-                                    >eCommerce
+                                    >
+                                        eCommerce
                                     </a>
                                 </li>
                             </ul>
@@ -245,16 +248,18 @@
                                         class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                         href="form-elements.html"
                                         :class="page === 'formElements' && '!text-white'"
-                                    >Form Elements</a
                                     >
+                                        Form Elements
+                                    </a>
                                 </li>
                                 <li>
                                     <a
                                         class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                         href="form-layout.html"
                                         :class="page === 'formLayout' && '!text-white'"
-                                    >Form Layout</a
                                     >
+                                        Form Layout
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -265,7 +270,7 @@
                     <!-- Menu Item Tables -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+                            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
                             href="tables.html"
                             @click="selected = (selected === 'Tables' ? '':'Tables')"
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') && (page === 'tables') }"
@@ -304,7 +309,7 @@
                     <!-- Menu Item Settings -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+                            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
                             href="settings.html"
                             @click="selected = (selected === 'Settings' ? '':'Settings')"
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Settings') && (page === 'settings') }"
@@ -349,13 +354,15 @@
 
             <!-- Others Group -->
             <div>
-                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">OTHERS</h3>
+                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">
+                    OTHERS
+                </h3>
 
                 <ul class="mb-6 flex flex-col gap-1.5">
                     <!-- Menu Item Chart -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+                            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
                             href="chart.html"
                             @click="selected = (selected === 'Chart' ? '':'Chart')"
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Chart') && (page === 'Chart') }"
@@ -468,8 +475,9 @@
                                         class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                         href="alerts.html"
                                         :class="page === 'alerts' && '!text-white'"
-                                    >Alerts</a
                                     >
+                                        Alerts
+                                    </a>
                                 </li>
 
                                 <li>
@@ -477,8 +485,9 @@
                                         class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                         href="buttons.html"
                                         :class="page === 'buttons' && '!text-white'"
-                                    >Buttons</a
                                     >
+                                        Buttons
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -555,16 +564,18 @@
                                         class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                         href="signin.html"
                                         :class="page === 'signin' && '!text-white'"
-                                    >Sign In</a
                                     >
+                                        Sign In
+                                    </a>
                                 </li>
                                 <li>
                                     <a
                                         class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
                                         href="signup.html"
                                         :class="page === 'signup' && '!text-white'"
-                                    >Sign Up</a
                                     >
+                                        Sign Up
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -575,6 +586,5 @@
             </div>
         </nav>
         <!-- Sidebar Menu -->
-
     </div>
 </aside>

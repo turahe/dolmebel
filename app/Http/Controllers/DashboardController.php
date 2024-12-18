@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Turahe\SEOTools\Contracts\Tools;
 
 class DashboardController extends Controller
 {
-    public function __construct(private Tools $meta)
-    {
-    }
+    public function __construct(private Tools $meta) {}
 
     public function __invoke()
     {
         $this->meta->setTitle('Dashboard ');
+
         return view('dashboard', []);
     }
 }

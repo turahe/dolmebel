@@ -12,8 +12,9 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Turahe\Core\Models\Organization;
 
 #[ScopedBy([SupplierScope::class])]
-class Supplier extends Organization {
+class Supplier extends Organization
+{
     use HasAddresses;
-    use HasPhones;
     use HasBanks;
+    use HasPhones;
 }

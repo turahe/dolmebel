@@ -25,8 +25,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasAddresses;
     use HasBanks;
     use HasMedia;
-    use HasPhones;
     use HasOrganization;
+    use HasPhones;
     use HasPlanSubscriptions;
     use HasRoles;
     use HasSettings;

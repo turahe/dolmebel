@@ -36,6 +36,6 @@ class DatabaseSeeder extends Seeder
         [
             'username' => 'user',
             'role' => 'user',
-        ]
+        ],
     ];
 }

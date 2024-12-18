@@ -13,8 +13,9 @@ use Turahe\Core\Models\Organization;
 
 #[ScopedBy([ShopScope::class])]
 
-class Shop extends Organization {
+class Shop extends Organization
+{
     use HasAddresses;
-    use HasPhones;
     use HasBanks;
+    use HasPhones;
 }
