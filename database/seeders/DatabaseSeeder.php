@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +11,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            \Turahe\Master\Seeds\LanguagesTableSeeder::class,
+            \Turahe\Master\Seeds\CountriesTableSeeder::class,
+            \Turahe\Master\Seeds\CurrenciesTableSeeder::class,
+            \Turahe\Master\Seeds\BanksTableSeeder::class,
+            RolesAndPermissionsSeeder::class,
+            UserTableSeeder::class,
+            OrganizationTableSeeder::class,
+            CategoryTableSeeder::class,
+            PostsTableSeeder::class,
+            ProductsTableSeeder::class,
+            ServicesTableSeeder::class,
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
         ]);
+
     }
+
+    private array $defaultUser = [
+        [
+            'username' => 'admin',
+            'role' => 'admin',
+        ],
+        [
+            'username' => 'user',
+            'role' => 'user',
+        ]
+    ];
 }

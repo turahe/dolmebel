@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Concerns\HasAddresses;
 use App\Concerns\HasBanks;
+use App\Concerns\HasPhones;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -24,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasAddresses;
     use HasBanks;
     use HasMedia;
+    use HasPhones;
     use HasOrganization;
     use HasPlanSubscriptions;
     use HasRoles;

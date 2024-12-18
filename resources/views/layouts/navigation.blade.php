@@ -33,7 +33,7 @@
                         <button
                             class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
                         >
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->username }}</div>
 
                             <div class="ms-1">
                                 <svg
@@ -123,7 +123,7 @@
                 <div
                     class="text-base font-medium text-gray-800 dark:text-gray-200"
                 >
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->username }}
                 </div>
                 <div class="text-sm font-medium text-gray-500">
                     {{ Auth::user()->email }}

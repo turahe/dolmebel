@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Enums\OrganizationType;
-use App\Models\Organization;
+use App\Models\Supplier;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Turahe\Core\Enums\OrganizationType;
 
-class OrganizationFactory extends Factory
+class SupplierFactory extends Factory
 {
-    protected $model = Organization::class;
+    protected $model = Supplier::class;
 
     /**
      * Define the model's default state.
@@ -26,7 +26,7 @@ class OrganizationFactory extends Factory
         return [
             'name' => $name,
             'code' => name_alias($name),
-            'type' => OrganizationType::Company,
+            'type' => OrganizationType::Supplier,
         ];
     }
 }

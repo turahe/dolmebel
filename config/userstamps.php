@@ -29,7 +29,7 @@ return [
      * Define the model which is used for the relationships on your models
      */
 
-    'users_model' => env('AUTH_MODEL', 'App\User'),
+    'users_model' => env('AUTH_MODEL', \App\Models\User::class),
 
     /*
      * Define the column which is used in the database to save the user's id

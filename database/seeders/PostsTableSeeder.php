@@ -9,7 +9,6 @@ use App\Models\User;
 use Database\Factories\BlogFactory;
 use Database\Factories\PageFactory;
 use Illuminate\Database\Seeder;
-use Laravel\Passport\Passport;
 
 class PostsTableSeeder extends Seeder
 {
@@ -18,12 +17,10 @@ class PostsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::where('email', 'admin@example.com')->first();
-        Passport::actingAs($user);
         BlogFactory::new()->count(100)->create()->each(function (Blog $post): void {
             $post->setContents(fake()->text);
             $comment = $post->addComment(fake()->sentence);
-            $reply = $comment->addComment(fake()->sentence);
+            $comment->addComment(fake()->sentence);
             $post->attachTags([fake()->word, fake()->word], $post->type);
         });
 

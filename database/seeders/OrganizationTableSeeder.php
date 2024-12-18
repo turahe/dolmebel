@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Enums\OrganizationType;
 use App\Enums\PhoneType;
-use App\Models\Organization;
 use App\Models\Shop;
 use App\Models\Supplier;
 use Database\Factories\AddressFactory;
 use Database\Factories\BankFactory;
-use Database\Factories\OrganizationFactory;
-use Database\Factories\ShopFactory;
 use Database\Factories\SupplierFactory;
+use Database\Factories\ShopFactory;
 use Illuminate\Database\Seeder;
+use Turahe\Core\Enums\OrganizationType;
 
 class OrganizationTableSeeder extends Seeder
 {
@@ -24,9 +22,9 @@ class OrganizationTableSeeder extends Seeder
     public function run(): void
     {
         //        Creating company
-        OrganizationFactory::new()->count(10)->create([
+        SupplierFactory::new()->count(10)->create([
             'type' => OrganizationType::Company,
-        ])->each(function (Organization $organization) {
+        ])->each(function (Supplier $organization) {
             $organization->addresses()->save(AddressFactory::new()->create([
                 'label' => 'office',
                 'model_id' => $organization->getKey(),
@@ -44,9 +42,7 @@ class OrganizationTableSeeder extends Seeder
 
         //        Creating supplier
 
-        SupplierFactory::new()->count(10)->create([
-            'type' => OrganizationType::Supplier,
-        ])->each(function (Supplier $organization) {
+        SupplierFactory::new()->count(10)->create()->each(function (Supplier $organization) {
             $organization->addresses()->save(AddressFactory::new()->create([
                 'label' => 'office',
                 'model_id' => $organization->getKey(),
@@ -64,9 +60,7 @@ class OrganizationTableSeeder extends Seeder
         });
 
         //        Creating store
-        ShopFactory::new()->count(10)->create([
-            'type' => OrganizationType::Store,
-        ])->each(function (Shop $organization): void {
+        ShopFactory::new()->count(10)->create()->each(function (Shop $organization): void {
             $organization->children()->saveMany(ShopFactory::new()->count(10)->create([
                 'type' => OrganizationType::BranchStore,
                 'parent_id' => $organization->id,
