@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Contracts\ShopRepositoryInterface;
-use App\Enums\OrganizationType;
 use App\Events\Shop\ShopCreated;
 use App\Events\Shop\ShopDeleted;
 use App\Events\Shop\ShopUpdated;
@@ -16,6 +15,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Turahe\Core\Enums\OrganizationType;
 use Turahe\Core\Repositories\BaseRepository;
 
 class ShopRepository extends BaseRepository implements ShopRepositoryInterface
