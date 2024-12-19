@@ -24,7 +24,6 @@
         "spatie/laravel-permission": "^6.9",
         "spatie/laravel-webhook-client": "^3.4",
         "turahe/comment": "dev-master",
-        "turahe/core": "dev-master",
         "turahe/laravel-likeable": "^1.0",
         "turahe/ledger": "dev-master",
         "turahe/media": "^1.0",
