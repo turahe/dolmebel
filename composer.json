@@ -4,41 +4,11 @@
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
-    "repositories": [
-        {
-            "url": "https://github.com/turahe/ledger.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/turahe/subscription.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/turahe/comment.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/turahe/core.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/turahe/ledger.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/turahe/media.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/turahe/post.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/turahe/mail-client.git",
-            "type": "git"
-        }
-    ],
-    "license": "MIT",
+    "license": "Propierty",
+    "repositories": [{
+        "type": "composer",
+        "url": "https://packagist.wach.id"
+    }],
     "require": {
         "php": "^8.2",
         "http-interop/http-factory-guzzle": "^1.2",

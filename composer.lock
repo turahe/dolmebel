@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d17911f0f217313283a8839754c479df",
+    "content-hash": "123624ce4fe1c65f5868dd0c2de88b78",
     "packages": [
         {
             "name": "brick/math",
@@ -8140,8 +8140,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/turahe/comment.git",
+                "url": "git@github.com:turahe/comment.git",
                 "reference": "ef8c37dd74ae359a6dfab13c6a9dc396fc8f1d12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/turahe/comment/zipball/ef8c37dd74ae359a6dfab13c6a9dc396fc8f1d12",
+                "reference": "ef8c37dd74ae359a6dfab13c6a9dc396fc8f1d12",
+                "shasum": ""
             },
             "require": {
                 "php": "^8.2",
@@ -8190,6 +8196,10 @@
                 "laravel-comments",
                 "turahe"
             ],
+            "support": {
+                "source": "https://github.com/turahe/comment/tree/master",
+                "issues": "https://github.com/turahe/comment/issues"
+            },
             "time": "2024-12-08T23:32:45+00:00"
         },
         {
@@ -8197,8 +8207,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/turahe/core.git",
+                "url": "git@github.com:turahe/core.git",
                 "reference": "84559394a7ff9c773bbbdec6c4795709886f35f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/turahe/core/zipball/84559394a7ff9c773bbbdec6c4795709886f35f7",
+                "reference": "84559394a7ff9c773bbbdec6c4795709886f35f7",
+                "shasum": ""
             },
             "require": {
                 "ext-iconv": "*",
@@ -8252,6 +8268,10 @@
                 }
             ],
             "description": "core sdk",
+            "support": {
+                "source": "https://github.com/turahe/core/tree/master",
+                "issues": "https://github.com/turahe/core/issues"
+            },
             "time": "2024-12-18T16:06:00+00:00"
         },
         {
@@ -8394,6 +8414,12 @@
                 "url": "https://github.com/turahe/ledger.git",
                 "reference": "84712bbc5c05c9d644520113c26534d903c6adf0"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/turahe/ledger/zipball/84712bbc5c05c9d644520113c26534d903c6adf0",
+                "reference": "84712bbc5c05c9d644520113c26534d903c6adf0",
+                "shasum": ""
+            },
             "require": {
                 "php": "^8.3",
                 "turahe/laravel-userstamps": "^1.0",
@@ -8433,6 +8459,10 @@
                     "email": "wachid@outlook.com"
                 }
             ],
+            "support": {
+                "source": "https://github.com/turahe/ledger/tree/master",
+                "issues": "https://github.com/turahe/ledger/issues"
+            },
             "time": "2024-11-20T03:14:17+00:00"
         },
         {
@@ -8522,6 +8552,12 @@
                 "url": "https://github.com/turahe/media.git",
                 "reference": "2dc617fb76ae8e0e538fd2f236c7c7550e49f738"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.wach.id/dist/turahe/media/turahe-media-2dc617fb76ae8e0e538fd2f236c7c7550e49f738-zip-aff4d6.zip",
+                "reference": "2dc617fb76ae8e0e538fd2f236c7c7550e49f738",
+                "shasum": "7c6fe7f9161fcad067884aae5aac9d704bda0ec4"
+            },
             "require": {
                 "intervention/image": "^3.5",
                 "kalnoy/nestedset": "^6.0",
@@ -8562,6 +8598,10 @@
                     "email": "nur@wach.id"
                 }
             ],
+            "support": {
+                "source": "https://github.com/turahe/media/tree/v1.0.3",
+                "issues": "https://github.com/turahe/media/issues"
+            },
             "time": "2024-09-10T08:35:46+00:00"
         },
         {
@@ -8569,8 +8609,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/turahe/post.git",
+                "url": "git@github.com:turahe/post.git",
                 "reference": "b489e8b355af792054889c270d9f0fa2d87ed10a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/turahe/post/zipball/b489e8b355af792054889c270d9f0fa2d87ed10a",
+                "reference": "b489e8b355af792054889c270d9f0fa2d87ed10a",
+                "shasum": ""
             },
             "require": {
                 "php": "^8.2",
@@ -8610,6 +8656,10 @@
                 }
             ],
             "description": "post",
+            "support": {
+                "source": "https://github.com/turahe/post/tree/master",
+                "issues": "https://github.com/turahe/post/issues"
+            },
             "time": "2024-12-12T01:35:39+00:00"
         },
         {
@@ -8697,6 +8747,12 @@
                 "url": "https://github.com/turahe/subscription.git",
                 "reference": "106d4e59e5400740ef00791b37eba5d02e1332da"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/turahe/subscription/zipball/106d4e59e5400740ef00791b37eba5d02e1332da",
+                "reference": "106d4e59e5400740ef00791b37eba5d02e1332da",
+                "shasum": ""
+            },
             "require": {
                 "spatie/eloquent-sortable": "^4.4",
                 "spatie/laravel-sluggable": "^3.6",
@@ -8737,6 +8793,10 @@
                     "email": "wachid@outlook.com"
                 }
             ],
+            "support": {
+                "source": "https://github.com/turahe/subscription/tree/master",
+                "issues": "https://github.com/turahe/subscription/issues"
+            },
             "time": "2024-11-18T03:08:03+00:00"
         },
         {

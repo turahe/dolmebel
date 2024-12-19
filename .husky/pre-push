@@ -1,0 +1,4 @@
+./vendor/bin/pint
+php artisan test
+npm run format
+npm run build
