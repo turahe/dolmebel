@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Contracts\SupplierRepositoryInterface;
-use App\Enums\OrganizationType;
 use App\Models\Supplier;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Collection;
+use Turahe\Core\Enums\OrganizationType;
 use Turahe\Core\Repositories\BaseRepository;
 
 class SupplierRepository extends BaseRepository implements SupplierRepositoryInterface
