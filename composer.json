@@ -23,13 +23,13 @@
         "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-permission": "^6.9",
         "spatie/laravel-webhook-client": "^3.4",
-        "turahe/comment": "dev-master",
+        "turahe/comment":  "^1.0",
         "turahe/laravel-likeable": "^1.0",
-        "turahe/ledger": "dev-master",
+        "turahe/ledger": "^1.0",
         "turahe/media": "^1.0",
-        "turahe/post": "dev-master",
+        "turahe/post": "^1.0",
         "turahe/seotools": "^1.0",
-        "turahe/subscription": "dev-master"
+        "turahe/subscription": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
@@ -37,6 +37,7 @@
         "brianium/paratest": "^7.6",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.2",
+        "laravel/dusk": "^8.2",
         "laravel/pail": "^1.1",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",

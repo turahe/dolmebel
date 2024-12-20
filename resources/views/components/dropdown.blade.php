@@ -1,24 +1,19 @@
-@props(["align" => "right", "width" => "48", "contentClasses" => "bg-white py-1 dark:bg-gray-700"])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'bg-white py-1 dark:bg-gray-700'])
 
 @php
     $alignmentClasses = match ($align) {
-        "left" => "start-0 ltr:origin-top-left rtl:origin-top-right",
-        "top" => "origin-top",
-        default => "end-0 ltr:origin-top-right rtl:origin-top-left",
+        'left' => 'start-0 ltr:origin-top-left rtl:origin-top-right',
+        'top' => 'origin-top',
+        default => 'end-0 ltr:origin-top-right rtl:origin-top-left',
     };
 
     $width = match ($width) {
-        "48" => "w-48",
+        '48' => 'w-48',
         default => $width,
     };
 @endphp
 
-<div
-    class="relative"
-    x-data="{ open: false }"
-    @click.outside="open = false"
-    @close.stop="open = false"
->
+<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         {{ $trigger }}
     </div>
@@ -35,9 +30,7 @@
         style="display: none"
         @click="open = false"
     >
-        <div
-            class="{{ $contentClasses }} rounded-md ring-1 ring-black ring-opacity-5"
-        >
+        <div class="{{ $contentClasses }} rounded-md ring-1 ring-black ring-opacity-5">
             {{ $content }}
         </div>
     </div>

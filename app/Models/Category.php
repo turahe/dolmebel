@@ -29,15 +29,33 @@ class Category extends \Turahe\Core\Models\Taxonomy
     {
         return Attribute::make(get: fn () => $this->hasMedia('image')
             ? $this->getFirstMediaUrl('image')
-            : $this->defaultImageUrl())->shouldCache();
+            : $this->defaultImageUrl());
+    }
+
+    /**
+     * Get the URL to the user's profile photo.
+     */
+    protected function icon(): Attribute
+    {
+        return Attribute::make(get: fn () => $this->hasMedia('icon')
+            ? $this->getFirstMediaUrl('icon')
+            : $this->defaultIconUrl());
     }
 
     /**
      * Get the default profile photo URL if no profile photo has been uploaded.
      */
-    protected function defaultImageUrl(): string
+    private function defaultImageUrl(): string
     {
-        return Storage::url('product-default.png');
+        return Storage::url('images/category.png');
+    }
+
+    /**
+     * Get the default profile photo URL if no profile photo has been uploaded.
+     */
+    private function defaultIconUrl(): string
+    {
+        return Storage::url('images/category.svg');
     }
 
     /**

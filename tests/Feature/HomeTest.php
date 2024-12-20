@@ -5,7 +5,7 @@ namespace Tests\Feature;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class HomeTest extends TestCase
 {
     /**
      * A basic test example.
@@ -14,6 +14,11 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+            ->assertSee("Login")
+            ->assertSee("Sign Up")
+            ->assertSee("SHOP BY CATEGORY")
+            ->assertSee("TOP NEW ARRIVAL")
+            ->assertSee("Recommended for you");
     }
 }

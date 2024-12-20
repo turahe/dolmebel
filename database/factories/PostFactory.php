@@ -22,7 +22,7 @@ class PostFactory extends Factory
         $type = $this->faker->randomElement(['blog', 'article', 'book']);
 
         return [
-            'title' => $this->faker->sentence,
+            'title' => $this->faker->word,
             'subtitle' => $this->faker->sentence,
             'description' => $this->faker->paragraph(2),
             'type' => $type,

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Service;
 use Database\Factories\PriceFactory;
 use Database\Factories\ServiceFactory;
@@ -16,7 +17,8 @@ class ServicesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        ServiceFactory::new()->count(30)->create()->each(function (Service $service): void {
+        $category = Category::first();
+        ServiceFactory::new()->count(30)->create(['category_id' => $category->getKey()])->each(function (Service $service): void {
             $service->setContents(fake()->text);
             $service->prices()->saveMany(PriceFactory::new()->count(3)->make());
             $service->attachTags([fake()->word, fake()->word], 'service');

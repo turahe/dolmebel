@@ -16,10 +16,18 @@ use Tests\TestCase;
 
 class ServiceTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->category = CategoryFactory::new()->createOne();
+    }
+
     public function test_can_list_all_services(): void
     {
         $count = 5;
-        ServiceFactory::new()->count($count)->create();
+        ServiceFactory::new()->count($count)->create([
+            'category_id' => $this->category->getKey(),
+        ]);
 
         $serviceRepo = new ServiceRepository(new Service);
         $services = $serviceRepo->getServices();
@@ -39,7 +47,9 @@ class ServiceTest extends TestCase
 
     public function test_can_force_delete_the_service(): void
     {
-        $service = ServiceFactory::new()->createOne();
+        $service = ServiceFactory::new()->createOne([
+            'category_id' => $this->category->getKey(),
+        ]);
 
         $serviceRepo = new ServiceRepository($service);
         $deleted = $serviceRepo->deleteService();
@@ -50,7 +60,9 @@ class ServiceTest extends TestCase
 
     public function test_can_delete_the_service(): void
     {
-        $service = ServiceFactory::new()->createOne();
+        $service = ServiceFactory::new()->createOne([
+            'category_id' => $this->category->getKey(),
+        ]);
 
         $serviceRepo = new ServiceRepository($service);
         $deletedTrash = $serviceRepo->trashService();
@@ -61,7 +73,9 @@ class ServiceTest extends TestCase
 
     public function test_can_update_the_service(): void
     {
-        $serviceFactory = ServiceFactory::new()->createOne();
+        $serviceFactory = ServiceFactory::new()->createOne([
+            'category_id' => $this->category->getKey(),
+        ]);
 
         $data = [
             'code' => $this->faker->uuid,
@@ -78,13 +92,13 @@ class ServiceTest extends TestCase
 
     public function test_can_create_a_service(): void
     {
-        $category = CategoryFactory::new()->createOne();
+
         $data = [
             'title' => $this->faker->name,
             'subtitle' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'code' => $this->faker->uuid,
-            'category_id' => $category->getKey(),
+            'category_id' => $this->category->getKey(),
         ];
 
         $serviceRepo = new ServiceRepository(new Service);
@@ -105,7 +119,9 @@ class ServiceTest extends TestCase
 
     public function test_return_empty_services_collection_when_eloquent_has_no_category(): void
     {
-        $service = ServiceFactory::new()->createOne();
+        $service = ServiceFactory::new()->createOne([
+            'category_id' => $this->category->getKey(),
+        ]);
 
         $this->assertInstanceOf(Category::class, $service->category);
 

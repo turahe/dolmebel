@@ -5,14 +5,11 @@
 >
     <!-- SIDEBAR HEADER -->
     <div class="py-5.5 lg:py-6.5 flex items-center justify-between gap-2 px-6">
-        <a href="{{ route("dashboard") }}">
+        <a href="{{ route('dashboard') }}">
             <x-application-logo class="h-10" />
         </a>
 
-        <button
-            class="block lg:hidden"
-            @click.stop="sidebarToggle = !sidebarToggle"
-        >
+        <button class="block lg:hidden" @click.stop="sidebarToggle = !sidebarToggle">
             <svg
                 class="fill-current"
                 width="20"
@@ -30,19 +27,12 @@
     </div>
     <!-- SIDEBAR HEADER -->
 
-    <div
-        class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear"
-    >
+    <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         <!-- Sidebar Menu -->
-        <nav
-            class="mt-5 px-4 py-4 lg:mt-9 lg:px-6"
-            x-data="{ selected: $persist('Dashboard') }"
-        >
+        <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6" x-data="{ selected: $persist('Dashboard') }">
             <!-- Menu Group -->
             <div>
-                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">
-                    MENU
-                </h3>
+                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
 
                 <ul class="mb-6 flex flex-col gap-1.5">
                     <!-- Menu Item Dashboard -->
@@ -291,12 +281,7 @@
                                 </g>
                                 <defs>
                                     <clipPath id="clip0_130_9756">
-                                        <rect
-                                            width="18"
-                                            height="18"
-                                            fill="white"
-                                            transform="translate(0 0.052124)"
-                                        />
+                                        <rect width="18" height="18" fill="white" transform="translate(0 0.052124)" />
                                     </clipPath>
                                 </defs>
                             </svg>
@@ -335,12 +320,7 @@
                                 </g>
                                 <defs>
                                     <clipPath id="clip0_130_9763">
-                                        <rect
-                                            width="18"
-                                            height="18"
-                                            fill="white"
-                                            transform="translate(0 0.052124)"
-                                        />
+                                        <rect width="18" height="18" fill="white" transform="translate(0 0.052124)" />
                                     </clipPath>
                                 </defs>
                             </svg>
@@ -354,9 +334,7 @@
 
             <!-- Others Group -->
             <div>
-                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">
-                    OTHERS
-                </h3>
+                <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">OTHERS</h3>
 
                 <ul class="mb-6 flex flex-col gap-1.5">
                     <!-- Menu Item Chart -->
@@ -387,12 +365,7 @@
                                 </g>
                                 <defs>
                                     <clipPath id="clip0_130_9801">
-                                        <rect
-                                            width="18"
-                                            height="18"
-                                            fill="white"
-                                            transform="translate(0 0.052124)"
-                                        />
+                                        <rect width="18" height="18" fill="white" transform="translate(0 0.052124)" />
                                     </clipPath>
                                 </defs>
                             </svg>
@@ -434,12 +407,7 @@
                                 </g>
                                 <defs>
                                     <clipPath id="clip0_130_9807">
-                                        <rect
-                                            width="18"
-                                            height="18"
-                                            fill="white"
-                                            transform="translate(0 0.052124)"
-                                        />
+                                        <rect width="18" height="18" fill="white" transform="translate(0 0.052124)" />
                                     </clipPath>
                                 </defs>
                             </svg>
@@ -523,12 +491,7 @@
                                 </g>
                                 <defs>
                                     <clipPath id="clip0_130_9814">
-                                        <rect
-                                            width="18"
-                                            height="18"
-                                            fill="white"
-                                            transform="translate(0 0.052124)"
-                                        />
+                                        <rect width="18" height="18" fill="white" transform="translate(0 0.052124)" />
                                     </clipPath>
                                 </defs>
                             </svg>

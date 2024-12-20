@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 use App\Contracts\BrandRepositoryInterface;
 use App\Models\Brand;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -23,50 +22,50 @@ class BrandRepository extends BaseRepository implements BrandRepositoryInterface
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function createBrand(array $data): Brand
     {
         try {
             return $this->model->create($data);
         } catch (QueryException $exception) {
-            throw new Exception($exception->getMessage());
+            throw new \Exception($exception->getMessage());
         }
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function updateBrand(array $data): bool
     {
         try {
             return $this->model->update($data);
         } catch (QueryException $exception) {
-            throw new Exception($exception->getMessage());
+            throw new \Exception($exception->getMessage());
         }
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function deleteBrand(): bool
     {
         try {
             return $this->model->forceDelete();
         } catch (QueryException $exception) {
-            throw new Exception($exception->getMessage());
+            throw new \Exception($exception->getMessage());
         }
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function trashBrand(): bool
     {
         try {
             return $this->model->delete();
         } catch (QueryException $exception) {
-            throw new Exception($exception->getMessage());
+            throw new \Exception($exception->getMessage());
         }
     }
 
@@ -76,7 +75,7 @@ class BrandRepository extends BaseRepository implements BrandRepositoryInterface
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function getBrand(string $id): Brand
     {

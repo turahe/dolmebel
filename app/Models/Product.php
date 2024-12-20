@@ -110,7 +110,7 @@ class Product extends Model implements \Turahe\Likeable\Contracts\Likeable
      */
     protected function defaultImageUrl(): string
     {
-        return Storage::url('product-default.png');
+        return Storage::url('images/product.png');
     }
 
     public function post(): BelongsTo

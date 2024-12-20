@@ -1,32 +1,86 @@
-import "./bootstrap";
+/*
+ * DolMebel - https://www.dolmebel.com
+ *
+ * @version   1.0.0
+ *
+ * @link      Releases - https://www.wach.id/releases
+ * @link      Terms Of Service - https://www.wach.id/terms
+ *
+ * Copyright (c) 2024.
+ *
+ */
 
-import Splide from "@splidejs/splide";
-import "@splidejs/splide/css";
+// import './bootstrap';
+import './splide';
 
-import Alpine from "alpinejs";
-import mask from "@alpinejs/mask";
-import persist from "@alpinejs/persist";
+import Alpine from 'alpinejs';
+// @ts-ignore
+import mask from '@alpinejs/mask';
+// @ts-ignore
+import persist from '@alpinejs/persist';
+// @ts-ignore
+import ajax from '@imacrayon/alpine-ajax';
+import intersect from '@alpinejs/intersect';
+import { Category, Product } from '@/interface';
+
+import contactForm from '@/components/contact-form';
+import { fetchCategories } from '@/components/categories';
+import { fetchProducts } from '@/components/products';
 
 Alpine.plugin(persist);
 Alpine.plugin(mask);
-window.Alpine = Alpine;
-Alpine.start();
+Alpine.plugin(ajax);
+Alpine.plugin(intersect);
 
-if (document.querySelector(".splide")) {
-    let splide = new Splide(".splide", {
-        type: "loop",
-        focus: 0,
-        gap: "1rem",
-        perPage: 4,
-        breakpoints: {
-            640: {
-                perPage: 2,
-            },
-            480: {
-                perPage: 1,
-            },
-        },
-    });
+// window.Alpine = Alpine;
 
-    splide.mount();
+interface TheCategoryState {
+    loading: boolean;
+    categories: Category[];
 }
+
+interface TheProductState {
+    loading: boolean;
+    products: Product[];
+}
+Alpine.data(
+    'theCategories',
+    (url: string) =>
+        ({
+            loading: false,
+            categories: [],
+            async fetchCategories() {
+                try {
+                    this.loading = true;
+                    this.categories = await fetchCategories(url);
+                } catch (error) {
+                    console.error('Error fetching categories:', error);
+                } finally {
+                    this.loading = false;
+                }
+            },
+        }) as TheCategoryState,
+);
+
+Alpine.data(
+    'theProducts',
+    (url: string) =>
+        ({
+            loading: false,
+            products: [],
+            async fetchProducts() {
+                try {
+                    this.loading = true;
+                    this.products = await fetchProducts(url);
+                } catch (error) {
+                    console.error('Error fetching products:', error);
+                } finally {
+                    this.loading = false;
+                }
+            },
+        }) as TheProductState,
+);
+
+Alpine.store('contactForm', contactForm);
+
+Alpine.start();

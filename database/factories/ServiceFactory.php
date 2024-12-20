@@ -16,7 +16,7 @@ class ServiceFactory extends Factory
         return [
             'code' => $this->faker->randomNumber(5, true),
             'post_id' => PostFactory::new()->create(['type' => 'service'])->getKey(),
-            'category_id' => CategoryFactory::new()->create()->getKey(),
+            //            'category_id' => CategoryFactory::new()->create()->getKey(),
         ];
     }
 }

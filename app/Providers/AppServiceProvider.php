@@ -54,10 +54,7 @@ class AppServiceProvider extends ServiceProvider
             \App\Contracts\OrderRepositoryInterface::class,
             \App\Repositories\OrderRepository::class
         );
-        $this->app->bind(
-            \App\Contracts\OrganizationRepositoryInterface::class,
-            \App\Repositories\OrganizationRepository::class
-        );
+
         $this->app->bind(
             \App\Contracts\PageRepositoryInterface::class,
             \App\Repositories\PageRepository::class

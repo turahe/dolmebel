@@ -171,4 +171,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             throw new \Exception($exception->getMessage());
         }
     }
+
+    public function addToWishlist(): bool
+    {
+        try {
+            return $this->model->delete();
+        } catch (QueryException $exception) {
+            throw new \Exception($exception->getMessage());
+        }
+    }
 }

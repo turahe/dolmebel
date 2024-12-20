@@ -15,12 +15,13 @@ use Turahe\Post\Models\Post;
 
 #[ScopedBy([BlogScope::class])]
 
-class Blog extends Post
+class Blog extends Post implements \Turahe\Likeable\Contracts\Likeable
 {
     use HasComments;
     use HasContents;
     use HasMedia;
     use SoftDeletes;
+    use \Turahe\Likeable\Traits\Likeable;
 
     /**
      * Get the URL to the post's image.

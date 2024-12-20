@@ -6,6 +6,7 @@ namespace Tests\Unit;
 
 use App\Models\Price;
 use App\Models\Service;
+use Database\Factories\CategoryFactory;
 use Database\Factories\PriceFactory;
 use Database\Factories\ServiceFactory;
 use Exception;
@@ -20,7 +21,9 @@ class PriceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = ServiceFactory::new()->createOne();
+        $this->service = ServiceFactory::new()->createOne([
+            'category_id' => CategoryFactory::new()->createOne()->getKey(),
+        ]);
     }
 
     public function test_return_empty_prices_collection_when_eloquent_has_no_prices(): void
