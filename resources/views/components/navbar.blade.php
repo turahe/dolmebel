@@ -37,23 +37,23 @@
         </div>
 
         @guest
-        <div class="ml-auto flex gap-4 px-5">
-            <a
-                class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="{{ route('login') }}"
-            >
-                {{ __('Login') }}
-            </a>
+            <div class="ml-auto flex gap-4 px-5">
+                <a
+                    class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
+                    href="{{ route('login') }}"
+                >
+                    {{ __('Login') }}
+                </a>
 
-            <span class="text-white">&#124;</span>
+                <span class="text-white">&#124;</span>
 
-            <a
-                class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-                href="{{ route('register') }}"
-            >
-                {{ __('Sign Up') }}
-            </a>
-        </div>
+                <a
+                    class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
+                    href="{{ route('register') }}"
+                >
+                    {{ __('Sign Up') }}
+                </a>
+            </div>
         @endguest
     </div>
 </nav>

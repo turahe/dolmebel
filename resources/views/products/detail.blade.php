@@ -197,9 +197,7 @@
             </div>
 
             <div class="mt-7 flex flex-row items-center gap-6">
-                <x-primary-button
-                    class="flex h-12 w-1/3 items-center justify-center duration-100 hover:bg-blue-800"
-                >
+                <x-primary-button class="flex h-12 w-1/3 items-center justify-center duration-100 hover:bg-blue-800">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -298,7 +296,7 @@
                             </svg>
                         </span>
                     </div>
-                    <img :src="item.image" :alt="item.name"/>
+                    <img :src="item.image" :alt="item.name" />
 
                     <div>
                         <p class="mt-2" x-text="item.name"></p>

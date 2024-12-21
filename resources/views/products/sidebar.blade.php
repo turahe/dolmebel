@@ -1,6 +1,10 @@
 <section class="hidden w-[300px] flex-shrink-0 px-4 lg:block">
     <div class="flex border-b pb-5">
-        <div class="w-full" x-data="theCategories('/api/categories?relation=products&parent_id=notNull')" x-init="fetchCategories()">
+        <div
+            class="w-full"
+            x-data="theCategories('/api/categories?relation=products&parent_id=notNull')"
+            x-init="fetchCategories()"
+        >
             <p class="mb-3 font-medium uppercase">{{ __('Categories') }}</p>
             <template x-if="loading">
                 <div>Loading...</div>
