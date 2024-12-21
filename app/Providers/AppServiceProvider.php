@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -120,6 +121,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Contracts\Master\LanguageRepositoryInterface::class,
             \App\Repositories\Master\LanguageRepository::class
         );
+
+        if ($this->app->environment('local') && class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**
@@ -127,6 +133,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //        JsonResource::withoutWrapping();
+
         Password::defaults(function () {
             return Password::min(8)
                 ->mixedCase()

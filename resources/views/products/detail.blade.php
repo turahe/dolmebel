@@ -113,20 +113,19 @@
                 <span class="font-normal">BE45VGTRK</span>
             </p>
 
-            @if($product->price)
+            @if ($product->price)
                 <p class="mt-4 text-4xl font-bold text-violet-900">
                     {{ $product->price->sale }}
                     <span class="text-xs text-gray-400 line-through">{{ $product->price->cogs }}</span>
                 </p>
             @endif
 
-
             <p class="pt-5 text-sm leading-5 text-gray-500">
                 {{ $product->description }}
             </p>
 
             <div class="mt-6">
-                <p class="pb-2 text-xs text-gray-500">Size</p>
+                <p class="pb-2 text-xs text-gray-500">{{ __('Size') }}</p>
 
                 <div class="flex gap-1">
                     <div
@@ -160,7 +159,7 @@
             </div>
 
             <div class="mt-6">
-                <p class="pb-2 text-xs text-gray-500">Color</p>
+                <p class="pb-2 text-xs text-gray-500">{{ __('Color') }}</p>
 
                 <div class="flex gap-1">
                     <div
@@ -198,8 +197,8 @@
             </div>
 
             <div class="mt-7 flex flex-row items-center gap-6">
-                <button
-                    class="flex h-12 w-1/3 items-center justify-center bg-violet-900 text-white duration-100 hover:bg-blue-800"
+                <x-primary-button
+                    class="flex h-12 w-1/3 items-center justify-center duration-100 hover:bg-blue-800"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -215,12 +214,11 @@
                             d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                         />
                     </svg>
+                    {{ __('Add to cart') }}
+                </x-primary-button>
 
-                    Add to cart
-                </button>
-
-                <button
-                    class="flex h-12 w-1/3 items-center justify-center bg-amber-400 duration-100 hover:bg-yellow-300"
+                <x-secondary-button
+                    class="flex h-12 w-1/3 items-center justify-center duration-100 hover:bg-yellow-300"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -237,8 +235,8 @@
                         />
                     </svg>
 
-                    Wishlist
-                </button>
+                    {{ __('Wishlist') }}
+                </x-secondary-button>
             </div>
         </div>
     </section>
@@ -246,14 +244,14 @@
     <!-- product details  -->
 
     <section class="container mx-auto max-w-[1200px] px-5 py-5 lg:py-10">
-        <h2 class="text-xl">Product details</h2>
+        <h2 class="text-xl">{{ __('Product detail') }}</h2>
         {!! $product->content_html !!}
     </section>
     <!-- /product details  -->
 
     <!-- /description  -->
 
-    <p class="mx-auto mb-5 mt-10 max-w-[1200px] px-5">RELATED PRODUCTS</p>
+    <p class="mx-auto mb-5 mt-10 max-w-[1200px] px-5">{{ __('Related Products') }}</p>
 
     <!-- Recommendations -->
     <section
@@ -300,7 +298,7 @@
                             </svg>
                         </span>
                     </div>
-                    <img class="" :src="item.image" :alt="item.name" />
+                    <img :src="item.image" :alt="item.name"/>
 
                     <div>
                         <p class="mt-2" x-text="item.name"></p>

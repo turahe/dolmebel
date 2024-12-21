@@ -26,14 +26,16 @@ class CategoryController
 
         $this->meta->setTitle('Categories');
 
+        $relation = $request->get('relation', 'products');
+
         $categories = app(Pipeline::class)
-            ->send(Category::query())
+            ->send(Category::query()->with(explode(',', 'media,'.$relation))->whereHas($relation))
             ->through([
                 \App\Http\Pipelines\QueryFilters\Search::class,
                 \App\Http\Pipelines\QueryFilters\ParentId::class,
             ])
             ->thenReturn()
-            ->paginate($request->input('limit', 12));
+            ->get();
 
         if ($request->expectsJson()) {
             return CategoryResource::collection($categories);
@@ -46,6 +48,9 @@ class CategoryController
     public function show(string $slug): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
     {
         $category = $this->categoryRepository->getTaxonomyBySlug($slug);
+
+        $this->meta->setTitle($category->name);
+        $this->meta->setDescription($category->description);
 
         return view('category.show', compact('category'));
     }

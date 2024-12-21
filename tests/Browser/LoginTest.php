@@ -10,10 +10,11 @@ use Tests\DuskTestCase;
 class LoginTest extends DuskTestCase
 {
     use DatabaseMigrations;
+
     /**
      * A Dusk test example.
      */
-    public function testExample(): void
+    public function test_example(): void
     {
         $user = UserFactory::new()->create([
             'email' => 'test@test.com',

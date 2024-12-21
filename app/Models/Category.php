@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Turahe\Media\HasMedia;
 
@@ -25,7 +26,7 @@ class Category extends \Turahe\Core\Models\Taxonomy
     /**
      * Get the URL to the user's profile photo.
      */
-    public function image(): Attribute
+    protected function image(): Attribute
     {
         return Attribute::make(get: fn () => $this->hasMedia('image')
             ? $this->getFirstMediaUrl('image')
@@ -58,15 +59,19 @@ class Category extends \Turahe\Core\Models\Taxonomy
         return Storage::url('images/category.svg');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function blogs()
     {
-        return $this->hasMany(Blog::class, 'category_id');
+        return $this->morphedByMany(
+            Blog::class,
+            'model',
+            'model_has_taxonomies',
+            'model_id',
+            'taxonomy_id',
+        );
+
     }
 
-    public function products()
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'category_id');
 

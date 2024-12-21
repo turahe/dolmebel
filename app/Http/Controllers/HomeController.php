@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         $this->meta->setTitle('Home');
-        $products = Product::with(['post', 'media'])->take(8)->get();
+        $products = Product::with(['post', 'media', 'prices'])->take(8)->get();
         $categories = Category::whereNull('parent_id')->with(['media'])->get();
 
         return view('welcome', compact('products', 'categories'));

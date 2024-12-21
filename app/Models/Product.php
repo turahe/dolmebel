@@ -95,6 +95,11 @@ class Product extends Model implements \Turahe\Likeable\Contracts\Likeable
 
     }
 
+    protected function description(): Attribute
+    {
+        return new Attribute(get: fn () => $this->post->description ?? $this->post->subtitle);
+    }
+
     /**
      * Get the URL to the user's profile photo.
      */

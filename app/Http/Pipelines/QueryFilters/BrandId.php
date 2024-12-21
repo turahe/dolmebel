@@ -16,11 +16,10 @@ namespace App\Http\Pipelines\QueryFilters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class CategoryId extends Filter
+class BrandId extends Filter
 {
     protected function applyFilters(Builder $builder): Builder
     {
-
-        return $builder->where('category_id', request($this->filterName()));
+        return $builder->where('brand_id', request($this->filterName()));
     }
 }

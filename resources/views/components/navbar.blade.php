@@ -34,14 +34,9 @@
             >
                 {{ __('Catalog') }}
             </a>
-            <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline" href="/">
-                {{ __('About Us') }}
-            </a>
-            <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline" href="/">
-                {{ __('Contact Use') }}
-            </a>
         </div>
 
+        @guest
         <div class="ml-auto flex gap-4 px-5">
             <a
                 class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
@@ -59,6 +54,7 @@
                 {{ __('Sign Up') }}
             </a>
         </div>
+        @endguest
     </div>
 </nav>
 
@@ -71,7 +67,7 @@
     <div class="mx-auto flex max-w-[1200px] py-10">
         <div
             class="w-[300px] border-r"
-            x-data="theCategories('/api/categories?parent_id=')"
+            x-data="theCategories('/api/categories?parent_id=&relation=products')"
             x-init="fetchCategories()"
         >
             <template x-if="loading">

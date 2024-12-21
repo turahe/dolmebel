@@ -13,16 +13,19 @@
         "@tailwindcss/typography": "^0.5.15",
         "@types/alpinejs": "^3.13.11",
         "@types/alpinejs__intersect": "^3.13.4",
+        "@types/jest": "^29.5.14",
         "@vite-pwa/assets-generator": "^0.2.6",
         "autoprefixer": "^10.4.2",
         "axios": "^1.7.4",
         "concurrently": "^9.0.1",
         "husky": "^9.1.7",
+        "jest": "^29.7.0",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",
         "prettier": "^3.4.2",
         "prettier-plugin-blade": "^2.1.19",
         "prettier-plugin-tailwindcss": "^0.6.9",
+        "ts-jest": "^29.2.5",
         "vite": "^5.0",
         "vite-plugin-pwa": "^0.21.1"
     },
@@ -32,9 +35,7 @@
         "@alpinejs/persist": "^3.14.7",
         "@imacrayon/alpine-ajax": "^0.10.5",
         "@splidejs/splide": "^4.1.4",
-        "@splidejs/splide-extension-auto-scroll": "^0.5.3",
         "alpinejs": "^3.4.2",
-        "meilisearch": "^0.46.0",
         "tailwindcss": "^3.1.0"
     }
 }

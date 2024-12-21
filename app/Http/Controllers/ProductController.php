@@ -17,11 +17,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = app(Pipeline::class)
-            ->send(Product::query())
+            ->send(Product::query()->with(['media', 'post', 'prices']))
             ->through([
                 \App\Http\Pipelines\QueryFilters\Search::class,
                 \App\Http\Pipelines\QueryFilters\ParentId::class,
                 \App\Http\Pipelines\QueryFilters\CategoryId::class,
+                \App\Http\Pipelines\QueryFilters\BrandId::class,
             ])
             ->thenReturn()
             ->paginate($request->input('limit', 12));
@@ -38,7 +39,10 @@ class ProductController extends Controller
     public function show(string $slug)
     {
         $product = app(ProductRepositoryInterface::class)->getProductBySlug($slug);
+
         $this->meta->setTitle($product->name);
+        $this->meta->setDescription($product->description);
+        $this->meta->addImages($product->image);
 
         return view('products.detail', compact('product'));
     }

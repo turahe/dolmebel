@@ -20,6 +20,7 @@ use Database\Factories\AddressFactory;
 use Database\Factories\BankFactory;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class UserTableSeeder extends Seeder
 {
@@ -30,6 +31,7 @@ class UserTableSeeder extends Seeder
     {
         UserFactory::new()->count(10)->create()->each(function (User $user): void {
             //            $user->setEmail(fake()->unique()->safeEmail());
+            Auth::login($user);
             $user->setPhone(fake()->unique()->phoneNumber, PhoneType::Mobile);
             $user->addresses()->save(AddressFactory::new()->create([
                 'label' => 'home',

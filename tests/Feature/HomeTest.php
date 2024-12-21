@@ -15,10 +15,10 @@ class HomeTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200)
-            ->assertSee("Login")
-            ->assertSee("Sign Up")
-            ->assertSee("SHOP BY CATEGORY")
-            ->assertSee("TOP NEW ARRIVAL")
-            ->assertSee("Recommended for you");
+            ->assertSee('Login')
+            ->assertSee('Sign Up')
+            ->assertSee('SHOP BY CATEGORY')
+            ->assertSee('TOP NEW ARRIVAL')
+            ->assertSee('Recommended for you');
     }
 }

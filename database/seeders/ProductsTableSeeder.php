@@ -22,16 +22,19 @@ class ProductsTableSeeder extends Seeder
     {
         $brand = fake()->randomElement(Brand::pluck('id')->toArray());
         $supplier = fake()->randomElement(Supplier::where('type', OrganizationType::Company)->pluck('id')->toArray());
-        $category = fake()->randomElement(Category::pluck('id')->toArray());
+        $categories = Category::all();
 
-        ProductFactory::new()->count(30)->create([
-            'brand_id' => $brand,
-            'supplier_id' => $supplier,
-            'category_id' => $category,
-        ])->each(function (Product $product): void {
-            $product->setContents(fake()->text);
-            $product->prices()->saveMany(PriceFactory::new()->count(3)->make());
-            $product->attachTags([fake()->word, fake()->word], 'product');
-        });
+        foreach ($categories as $category) {
+            ProductFactory::new()->count(mt_rand(10, 30))->create([
+                'brand_id' => $brand,
+                'supplier_id' => $supplier,
+                'category_id' => $category->getKey(),
+            ])->each(function (Product $product): void {
+                $product->setContents(fake()->text);
+                $product->prices()->saveMany(PriceFactory::new()->count(3)->make());
+                $product->attachTags([fake()->word, fake()->word], 'product');
+            });
+        }
+
     }
 }

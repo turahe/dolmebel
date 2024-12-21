@@ -13,6 +13,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property string $description
  * @property string $image
  * @property string $icon
+ * @property string $parent_id
+ * @property \Illuminate\Support\Collection $products
+ * @property \Illuminate\Support\Collection $blogs
  */
 class CategoryResource extends JsonResource
 {
@@ -31,6 +34,21 @@ class CategoryResource extends JsonResource
             'description' => $this->description,
             'image' => $this->image,
             'icon' => $this->icon,
+            'parent_id' => $this->parent_id,
+            'count' => $this->getCountRelation($request->get('relation')),
         ];
+    }
+
+    private function getCountRelation(string $relation): int
+    {
+        $count = 0;
+        if ($relation === 'products') {
+            $count = $this->products->count();
+        }
+        if ($relation === 'blogs') {
+            $count = $this->blogs->count();
+        }
+
+        return $count;
     }
 }

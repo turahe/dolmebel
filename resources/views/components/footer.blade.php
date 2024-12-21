@@ -46,10 +46,11 @@
         <div class="mx-5 mt-10">
             <p class="font-medium text-gray-500">DOCUMENTS</p>
             <ul class="text-sm leading-8">
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Conditions</a></li>
-                <li><a href="#">Privacy</a></li>
-                <li><a href="#">License</a></li>
+                <li><a href="{{ url('contact-us') }}">{{ __('Contact Us') }}</a></li>
+                <li><a href="{{ url('about-us') }}">{{ __('About Us') }}</a></li>
+                <li><a href="{{ url('/') }}">{{ __('Terms') }}</a></li>
+                <li><a href="{{ url('/') }}">{{ __('Conditions') }}</a></li>
+                <li><a href="{{ url('/') }}">{{ __('Privacy') }}</a></li>
             </ul>
         </div>
 
@@ -75,7 +76,6 @@
             <img class="h-8" src="https://cdn-icons-png.flaticon.com/512/5968/5968299.png" alt="Visa icon" />
             <img class="h-8" src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="AE icon" />
             <img class="h-8" src="https://cdn-icons-png.flaticon.com/512/5968/5968144.png" alt="Apple pay icon" />
-            <img class="h-8" src="https://cdn-icons-png.flaticon.com/512/5968/6124998.png" alt="Apple pay icon" />
         </div>
     </div>
 </section>

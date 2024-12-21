@@ -25,8 +25,8 @@ export async function fetchCategories(url: string): Promise<Category[]> {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
-        return data.data as Category[]; // Type assertion for clarity
+        const res = await response.json();
+        return res.data as Category[];
     } catch (error) {
         console.error('Error fetching categories:', error);
         throw error; // Re-throw for potential handling in the calling component

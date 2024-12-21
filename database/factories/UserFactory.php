@@ -23,13 +23,17 @@ class UserFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     *
+     * @throws \Exception
      */
     public function definition(): array
     {
+        $this->faker->addProvider(new \Faker\Provider\id_ID\PhoneNumber($this->faker));
+
         return [
-            'username' => fake()->username(),
-            'email' => fake()->unique()->safeEmail(),
-            'phone' => fake()->unique()->phoneNumber(),
+            'username' => $this->faker->username(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => parse_phone($this->faker->unique()->e164PhoneNumber()),
             'email_verified_at' => now(),
             'phone_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -44,6 +48,7 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+            'phone_verified_at' => null,
         ]);
     }
 }
