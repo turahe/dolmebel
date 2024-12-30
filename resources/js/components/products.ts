@@ -10,6 +10,30 @@
  *
  */
 
+class ProductDto {
+    id: string;
+    name: string;
+    price: string;
+    constructor(id: string, name: string, price: string) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+}
+
+class PriceDto {
+    id: string;
+    currency: string;
+    sale: number;
+    cogs: number;
+    constructor(id: string, currency: string, sale: number, cogs: number) {
+        this.id = id;
+        this.currency = currency;
+        this.sale = sale;
+        this.cogs = cogs;
+    }
+}
+
 import { Product } from '@/interface';
 export async function fetchProducts(url: string): Promise<Product[]> {
     try {

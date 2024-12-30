@@ -32,7 +32,6 @@ class CreateCartRequest extends FormRequest
             'cart.*.unit_price' => 'required',
             'payment_method_id' => 'required',
             'payment_status' => 'required',
-            'customer_id' => 'required',
         ];
     }
 }

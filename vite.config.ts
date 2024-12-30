@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import { VitePWA } from 'vite-plugin-pwa'
+import path from 'path'
 export default defineConfig({
     plugins: [
         laravel({
@@ -9,4 +10,9 @@ export default defineConfig({
         }),
         VitePWA({ registerType: 'autoUpdate' })
     ],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './resources/js')
+        },
+    },
 });

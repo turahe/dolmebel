@@ -16,6 +16,7 @@
         "paths": {
             "@/*": ["resources/js/*"]
         },
+        "include": ["resources/js", "test/js"],
         "allowJs": true,
         "checkJs": false
     },

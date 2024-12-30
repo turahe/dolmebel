@@ -56,6 +56,14 @@ interface Size {
     name: string;
     value: string;
 }
+
+interface Price {
+    id: string;
+    currency: string;
+    cogs: string;
+    sale: string;
+    discount: string;
+}
 interface Product {
     id: string;
     name: string;
@@ -65,6 +73,7 @@ interface Product {
     image: string;
     images: Image[];
     content: string;
+    price: Price;
     colors: Color[];
     sizes: Size[];
     category: Category;
@@ -78,4 +87,58 @@ interface Country {
     code: string;
 }
 
-export type { Category, Product, Country };
+interface Comment {
+    id: string;
+    title: string;
+    content: string;
+}
+
+interface MetaTag {
+    current_page: number;
+    from: number;
+    last_page: number;
+    links: MetaTagLinks[];
+    path: string;
+    per_page: number;
+    to: number;
+    total: number;
+}
+
+interface Links {
+    first: string | null;
+    last: string | null;
+    prev: string | null;
+    next: string | null;
+}
+
+interface MetaTagLinks {
+    url: string;
+    label: string;
+    active: boolean;
+}
+
+interface Media {
+    id: string;
+    name: string;
+    file_name: string;
+    mime_type: string;
+    size: number;
+    url: string;
+}
+export type {
+    Brand,
+    Category,
+    Color,
+    Comment,
+    Country,
+    Dimension,
+    Image,
+    Links,
+    Material,
+    Media,
+    MetaTag,
+    MetaTagLinks,
+    Price,
+    Product,
+    Size,
+};

@@ -27,9 +27,10 @@ class CategoryController
         $this->meta->setTitle('Categories');
 
         $relation = $request->get('relation', 'products');
+        $with = explode(',', 'media,'.$relation);
 
         $categories = app(Pipeline::class)
-            ->send(Category::query()->with(explode(',', 'media,'.$relation))->whereHas($relation))
+            ->send(Category::query()->with($with)->whereHas($relation))
             ->through([
                 \App\Http\Pipelines\QueryFilters\Search::class,
                 \App\Http\Pipelines\QueryFilters\ParentId::class,

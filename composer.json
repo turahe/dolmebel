@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "turahe/dolmebel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
@@ -23,7 +23,7 @@
         "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-permission": "^6.9",
         "spatie/laravel-webhook-client": "^3.4",
-        "turahe/comment":  "^1.0",
+        "turahe/comment": "^1.0",
         "turahe/laravel-likeable": "^1.0",
         "turahe/ledger": "^1.0",
         "turahe/media": "^1.0",
@@ -45,7 +45,6 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
         "phpunit/phpunit": "^11.0.1",
-        "spatie/laravel-typescript-transformer": "^2.5",
         "sti3bas/laravel-scout-array-driver": "^4.1",
         "tanmuhittin/laravel-google-translate": "^2.3"
     },

@@ -54,6 +54,7 @@ class ProductFeatureTest extends TestCase
             'supplier_id' => $this->supplier->getKey(),
             'category_id' => $this->category->getKey(),
         ]);
+        $product->setPrice($this->faker->numberBetween(1000, 999999));
         $response = $this->get('/product/'.$product->slug);
 
         $response->assertStatus(200)

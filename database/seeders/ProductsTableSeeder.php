@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
+use Database\Factories\CommentFactory;
 use Database\Factories\PriceFactory;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Seeder;
@@ -33,6 +34,9 @@ class ProductsTableSeeder extends Seeder
                 $product->setContents(fake()->text);
                 $product->prices()->saveMany(PriceFactory::new()->count(3)->make());
                 $product->attachTags([fake()->word, fake()->word], 'product');
+
+                $product->comments()->saveMany(CommentFactory::new()->count(3)->make());
+
             });
         }
 

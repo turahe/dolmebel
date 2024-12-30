@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
+ * @property string $id
  * @property string $currency
  * @property float $cogs
  * @property float $sale
@@ -20,6 +21,7 @@ class PriceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'currency' => $this->currency,
             'cogs' => $this->cogs,
             'sale' => $this->sale,

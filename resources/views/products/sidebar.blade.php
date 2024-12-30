@@ -14,10 +14,16 @@
                     <div class="flex w-full justify-between">
                         <div class="flex items-center justify-center">
                             <input type="checkbox" />
-                            <p class="ml-4" x-text="item.name"></p>
+                            <p
+                                class="ml-4"
+                                x-text="item.name"
+                            ></p>
                         </div>
                         <div>
-                            <p class="text-gray-500" x-text="'(' + item.count + ')'"></p>
+                            <p
+                                class="text-gray-500"
+                                x-text="'(' + item.count + ')'"
+                            ></p>
                         </div>
                     </div>
                 </template>
@@ -77,7 +83,13 @@
 
             <div class="flex w-full">
                 <div class="flex justify-between">
-                    <input x-mask="99999" min="50" type="number" class="h-8 w-[90px] border pl-2" placeholder="50" />
+                    <input
+                        x-mask="99999"
+                        min="50"
+                        type="number"
+                        class="h-8 w-[90px] border pl-2"
+                        placeholder="50"
+                    />
                     <span class="px-3">-</span>
                     <input
                         x-mask="999999"
@@ -92,7 +104,10 @@
     </div>
 
     <div class="flex border-b py-5">
-        <div class="w-full" x-data="{ sizes: ['XS', 'S', 'M', 'L', 'XL'] }">
+        <div
+            class="w-full"
+            x-data="{ sizes: ['XS', 'S', 'M', 'L', 'XL'] }"
+        >
             <p class="mb-3 font-medium uppercase">SIZE</p>
 
             <div class="flex gap-2">

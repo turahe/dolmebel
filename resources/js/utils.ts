@@ -39,35 +39,55 @@ function convertUtcToLocal(utcTimeString: string): string | null {
     }
 }
 
+function formatCurrency(value: number, currency: string): string {
+    const formatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: currency,
+    });
+    return formatter.format(value);
+}
+
+function discount(cogs: number, sale: number): string {
+    let discount: number = ((cogs - sale) / cogs) * 100;
+    if (discount < 0) {
+        discount = 0;
+    }
+    return '-' + Math.round(discount) + ' OFF';
+}
+
+function isLessOne(n: number): boolean {
+    return n < 1;
+}
+
 // Examples with type annotations:
-const utcTime1: string = '2024-10-27T10:30:00Z';
-const utcTime2: string = '2024-10-27 10:30:00'; // Less reliable format
-const utcTime3: string = 'invalid date';
-const utcTime4: string = '2024-11-05T15:45:00Z';
+// const utcTime1: string = '2024-10-27T10:30:00Z';
+// const utcTime2: string = '2024-10-27 10:30:00'; // Less reliable format
+// const utcTime3: string = 'invalid date';
+// const utcTime4: string = '2024-11-05T15:45:00Z';
 
-const localTime1: string | null = convertUtcToLocal(utcTime1);
-const localTime2: string | null = convertUtcToLocal(utcTime2);
-const localTime3: string | null = convertUtcToLocal(utcTime3);
-
-console.log(`UTC: ${utcTime1}, Local: ${localTime1}`);
-console.log(`UTC: ${utcTime2}, Local: ${localTime2}`);
-console.log(`UTC: ${utcTime3}, Local: ${localTime3}`);
+// const localTime1: string | null = convertUtcToLocal(utcTime1);
+// const localTime2: string | null = convertUtcToLocal(utcTime2);
+// const localTime3: string | null = convertUtcToLocal(utcTime3);
+//
+// console.log(`UTC: ${utcTime1}, Local: ${localTime1}`);
+// console.log(`UTC: ${utcTime2}, Local: ${localTime2}`);
+// console.log(`UTC: ${utcTime3}, Local: ${localTime3}`);
 
 // Example with specific formatting and type annotation:
-const localTime4: string | null = new Date(utcTime4).toLocaleString('en-GB', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false, // Use 24-hour format
-});
-console.log(`UTC: ${utcTime4}, Local (formatted): ${localTime4}`);
+// const localTime4: string | null = new Date(utcTime4).toLocaleString('en-GB', {
+//     year: 'numeric',
+//     month: '2-digit',
+//     day: '2-digit',
+//     hour: '2-digit',
+//     minute: '2-digit',
+//     second: '2-digit',
+//     hour12: false, // Use 24-hour format
+// });
+// console.log(`UTC: ${utcTime4}, Local (formatted): ${localTime4}`);
 
-//Demonstrate passing null
-const nullTime: null = null;
-const convertedNullTime: string | null = convertUtcToLocal(nullTime as any); //Type assertion to bypass type checking for demonstration
-console.log(`UTC: ${nullTime}, Local: ${convertedNullTime}`);
+// Demonstrate passing null
+// const nullTime: null = null;
+// const convertedNullTime: string | null = convertUtcToLocal(nullTime as any); //Type assertion to bypass type checking for demonstration
+// console.log(`UTC: ${nullTime}, Local: ${convertedNullTime}`);
 
-export { convertUtcToLocal };
+export { convertUtcToLocal, discount, formatCurrency, isLessOne };

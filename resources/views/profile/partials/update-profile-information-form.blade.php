@@ -9,16 +9,27 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form
+        id="send-verification"
+        method="post"
+        action="{{ route('verification.send') }}"
+    >
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form
+        method="post"
+        action="{{ route('profile.update') }}"
+        class="mt-6 space-y-6"
+    >
         @csrf
         @method('patch')
 
         <div>
-            <x-input-label for="username" :value="__('Username')" />
+            <x-input-label
+                for="username"
+                :value="__('Username')"
+            />
             <div class="relative">
                 <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
                     <svg
@@ -46,11 +57,17 @@
                     autocomplete="username"
                 />
             </div>
-            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+            <x-input-error
+                class="mt-2"
+                :messages="$errors->get('username')"
+            />
         </div>
 
         <div>
-            <x-input-label for="phone" :value="__('Phone')" />
+            <x-input-label
+                for="phone"
+                :value="__('Phone')"
+            />
             <div class="relative">
                 <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
                     <svg
@@ -77,11 +94,17 @@
                     autocomplete="phone"
                 />
             </div>
-            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+            <x-input-error
+                class="mt-2"
+                :messages="$errors->get('phone')"
+            />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label
+                for="email"
+                :value="__('Email')"
+            />
             <div class="relative">
                 <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
                     <svg
@@ -109,7 +132,10 @@
                     autocomplete="username"
                 />
             </div>
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-input-error
+                class="mt-2"
+                :messages="$errors->get('email')"
+            />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -134,7 +160,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button class="w-1/3 rounded">{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

@@ -24,7 +24,7 @@ class CartRepository extends BaseRepository implements CartRepositoryInterface
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getCarts(string $order = 'created_at', string $sort = 'desc', $except = []): Collection
+    public function getUserCarts(string $order = 'created_at', string $sort = 'desc', $except = []): Collection
     {
         return $this->model->newQuery()
             ->where('user_id', auth()->id())

@@ -32,16 +32,4 @@ class UpdateAttributeValueRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'attribute_id.required' => trans('validation.attribute_id_required'),
-            'value.required' => trans('validation.attribute_value_required'),
-        ];
-    }
 }

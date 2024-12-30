@@ -12,7 +12,6 @@ use App\Repositories\CartRepository;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 /**
  * @group Cart
@@ -40,7 +39,7 @@ class CartController
     public function index()
     {
         $this->authorize('viewAny', Cart::class);
-        $carts = $this->cart->getCarts();
+        $carts = $this->cart->getUserCarts();
 
         return view('cart.index', compact('carts'));
     }
@@ -50,10 +49,10 @@ class CartController
      *
      * @throws AuthorizationException
      */
-    public function store(CreateCartRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(CreateCartRequest $request)
     {
         $this->authorize('create', Cart::class);
-        $cart = $this->cart->createCart($request->all());
+        $cart = $this->cart->createCart($request->validated());
 
         return redirect()->route('cart.index');
     }
@@ -75,9 +74,9 @@ class CartController
      * Update the specified resource in storage.
      *
      * @throws AuthorizationException
-     * @throws Exception
+     * @throws \Exception
      */
-    public function update(UpdateCartRequest $request, string $id): \Illuminate\Http\RedirectResponse
+    public function update(UpdateCartRequest $request, string $id)
     {
         $cart = $this->cart->getCart($id);
         $this->authorize('update', $cart);
@@ -93,7 +92,7 @@ class CartController
      * @throws AuthorizationException
      * @throws \Exception
      */
-    public function destroy(string $id): \Illuminate\Http\RedirectResponse
+    public function destroy(string $id)
     {
         $cart = $this->cart->getCart($id);
         $this->authorize('delete', $cart);
@@ -108,7 +107,7 @@ class CartController
      *
      * @throws AuthorizationException
      */
-    public function massDestroy(Request $request): Response
+    public function massDestroy(Request $request)
     {
         $this->authorize('delete', Cart::class);
         $request->validate(['ids' => 'required|array']);

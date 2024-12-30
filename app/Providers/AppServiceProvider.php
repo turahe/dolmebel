@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
@@ -134,6 +135,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //        JsonResource::withoutWrapping();
+
+        Relation::morphMap([
+            'user' => \App\Models\User::class,
+            'comment' => \Turahe\Comment\Models\Comment::class,
+            'blog' => \App\Models\Blog::class,
+            'product' => \App\Models\Product::class,
+        ]);
 
         Password::defaults(function () {
             return Password::min(8)

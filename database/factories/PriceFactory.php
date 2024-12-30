@@ -25,8 +25,8 @@ class PriceFactory extends Factory
 
         return [
             'currency' => 'IDR',
-            'cogs' => $price,
-            'sale' => $price + 2,
+            'cogs' => ($price + mt_rand(100, 1000)) * 1000,
+            'sale' => $price * 1000,
         ];
     }
 }

@@ -33,7 +33,7 @@ class UserFactory extends Factory
         return [
             'username' => $this->faker->username(),
             'email' => $this->faker->unique()->safeEmail(),
-            'phone' => parse_phone($this->faker->unique()->e164PhoneNumber()),
+            'phone' => $this->faker->unique()->e164PhoneNumber(),
             'email_verified_at' => now(),
             'phone_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

@@ -13,8 +13,13 @@ class ExampleTest extends DuskTestCase
     public function test_basic_example(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                ->assertSee('Laravel');
+            $browser->assertSee('Login')
+                ->assertSee('Sign Up')
+                ->assertSee('Shop by category')
+                ->assertSee('Top New Arrival')
+                ->assertSee('Recommended for you');
+
+            $browser->screenshot('example');
         });
     }
 }

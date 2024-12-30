@@ -18,6 +18,5 @@ class HomeController extends Controller
         $categories = Category::whereNull('parent_id')->with(['media'])->get();
 
         return view('welcome', compact('products', 'categories'));
-
     }
 }

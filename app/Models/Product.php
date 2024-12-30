@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Scout\Searchable;
+use Turahe\Comment\Concerns\HasComments;
 use Turahe\Core\Concerns\HasTags;
 use Turahe\Likeable\Traits\Likeable;
 use Turahe\Media\HasMedia;
@@ -32,6 +33,7 @@ use Turahe\UserStamps\Concerns\HasUserStamps;
 
 class Product extends Model implements \Turahe\Likeable\Contracts\Likeable
 {
+    use HasComments;
     use HasContents;
     use HasMedia;
     use HasPrice;

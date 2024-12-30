@@ -17,8 +17,8 @@ class HomeTest extends TestCase
         $response->assertStatus(200)
             ->assertSee('Login')
             ->assertSee('Sign Up')
-            ->assertSee('SHOP BY CATEGORY')
-            ->assertSee('TOP NEW ARRIVAL')
+            ->assertSee('Shop by category')
+            ->assertSee('Top New Arrival')
             ->assertSee('Recommended for you');
     }
 }

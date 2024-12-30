@@ -12,7 +12,6 @@
 
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/css';
-import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 
 if (document.querySelector('.splide')) {
     const splide = new Splide('.splide', {

@@ -11,13 +11,25 @@
         </p>
         <div class="mt-10 flex gap-3">
             <a href="https://github.com/bbulakh">
-                <img class="h-5 w-5 cursor-pointer" src="/assets/images/github.svg" alt="github icon" />
+                <img
+                    class="h-5 w-5 cursor-pointer"
+                    src="/assets/images/github.svg"
+                    alt="github icon"
+                />
             </a>
             <a href="https://t.me/b_bulakh">
-                <img class="h-5 w-5 cursor-pointer" src="/assets/images/telegram.svg" alt="telegram icon" />
+                <img
+                    class="h-5 w-5 cursor-pointer"
+                    src="/assets/images/telegram.svg"
+                    alt="telegram icon"
+                />
             </a>
             <a href="https://www.linkedin.com/in/bogdan-bulakh-393284190/">
-                <img class="h-5 w-5 cursor-pointer" src="/assets/images/linkedin.svg" alt="twitter icon" />
+                <img
+                    class="h-5 w-5 cursor-pointer"
+                    src="/assets/images/linkedin.svg"
+                    alt="twitter icon"
+                />
             </a>
         </div>
     </div>
@@ -73,9 +85,21 @@
     <div class="mx-auto flex max-w-[1200px] items-center justify-between px-4 pt-2">
         <p>&copy; {{ config('app.name') }}, {{ date('Y') }}</p>
         <div class="flex items-center space-x-3">
-            <img class="h-8" src="https://cdn-icons-png.flaticon.com/512/5968/5968299.png" alt="Visa icon" />
-            <img class="h-8" src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="AE icon" />
-            <img class="h-8" src="https://cdn-icons-png.flaticon.com/512/5968/5968144.png" alt="Apple pay icon" />
+            <img
+                class="h-8"
+                src="https://cdn-icons-png.flaticon.com/512/5968/5968299.png"
+                alt="Visa icon"
+            />
+            <img
+                class="h-8"
+                src="https://cdn-icons-png.flaticon.com/512/349/349228.png"
+                alt="AE icon"
+            />
+            <img
+                class="h-8"
+                src="https://cdn-icons-png.flaticon.com/512/5968/5968144.png"
+                alt="Apple pay icon"
+            />
         </div>
     </div>
 </section>

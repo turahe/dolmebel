@@ -10,8 +10,8 @@
  *
  */
 
-import { Country } from '@/interface';
 import countryData from '@/data/country';
+import { Country } from '@/interface';
 
 const nameMap: Record<string, string> = {};
 const codeMap: Record<string, string> = {};

@@ -10,7 +10,7 @@ use Turahe\Core\Contracts\BaseRepositoryInterface;
 
 interface CartRepositoryInterface extends BaseRepositoryInterface
 {
-    public function getCarts(string $order = 'created_at', string $sort = 'desc', $except = []): Collection;
+    public function getUserCarts(string $order = 'created_at', string $sort = 'desc', $except = []): Collection;
 
     public function getCart($id): Cart;
 

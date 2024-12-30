@@ -4,7 +4,10 @@
             @click="desktopMenuOpen = ! desktopMenuOpen"
             class="ml-5 flex h-full w-40 cursor-pointer items-center justify-center bg-amber-400"
         >
-            <div class="flex justify-around" href="#">
+            <div
+                class="flex justify-around"
+                href="#"
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -25,7 +28,10 @@
         </button>
 
         <div class="mx-7 flex gap-8">
-            <a class="font-light text-white duration-100 hover:text-yellow-400 hover:underline" href="/">
+            <a
+                class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
+                href="/"
+            >
                 {{ __('Home') }}
             </a>
             <a
@@ -67,7 +73,7 @@
     <div class="mx-auto flex max-w-[1200px] py-10">
         <div
             class="w-[300px] border-r"
-            x-data="theCategories('/api/categories?parent_id=&relation=products')"
+            x-data="theCategories('/categories?parent_id=&relation=products')"
             x-init="fetchCategories()"
         >
             <template x-if="loading">
@@ -77,7 +83,11 @@
                 <ul class="px-5">
                     <template x-for="item in categories">
                         <li class="active:blue-900 flex items-center gap-2 active:bg-amber-400">
-                            <img class="h-4 w-4" :src="item.icon" alt="Bedroom icon" />
+                            <img
+                                class="h-4 w-4"
+                                :src="item.icon"
+                                alt="Bedroom icon"
+                            />
                             <span x-text="item.name"></span>
                             <span class="ml-auto">
                                 <svg

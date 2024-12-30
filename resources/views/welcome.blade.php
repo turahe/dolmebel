@@ -2,7 +2,7 @@
     <div class="relative">
         <img
             class="w-full object-cover brightness-50 filter lg:h-[500px]"
-            src="/assets/images/header-bg.jpeg"
+            src="{{ asset('/assets/images/header-bg.jpeg') }}"
             alt="Living room image"
         />
 
@@ -14,11 +14,11 @@
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur aperiam natus, nulla, obcaecati
                 nesciunt, itaque adipisci earum ducimus pariatur eaque labore.
             </p>
-            <button
+            <x-secondary-button
                 class="mx-auto mt-5 w-1/2 bg-amber-400 px-3 py-1 text-black duration-100 hover:bg-yellow-300 lg:mx-0 lg:h-10 lg:w-2/12 lg:px-10"
             >
                 Order Now
-            </button>
+            </x-secondary-button>
         </div>
     </div>
 
@@ -108,12 +108,12 @@
 
     <!-- /Cons bages  -->
 
-    <h2 class="mx-auto mb-5 max-w-[1200px] px-5">SHOP BY CATEGORY</h2>
+    <h2 class="mx-auto mb-5 max-w-[1200px] px-5 uppercase">{{ __('Shop by category') }}</h2>
 
     <!-- Categories -->
     <section
         class="mx-auto grid max-w-[1200px] grid-cols-2 px-5 lg:grid-cols-3 lg:gap-5"
-        x-data="theCategories('/api/categories?parent_id=')"
+        x-data="theCategories('/api/categories?parent_id=&relation=products')"
         x-init="fetchCategories()"
     >
         <template x-if="loading">
@@ -144,18 +144,25 @@
 
     <!-- /Slider  -->
 
-    <p class="mx-auto mb-5 mt-10 max-w-[1200px] px-5">TOP NEW ARRIVAL</p>
+    <p class="mx-auto mb-5 mt-10 max-w-[1200px] px-5 uppercase">{{ __('Top New Arrival') }}</p>
 
     <!-- Slider  -->
 
-    <section class="splide mx-auto max-w-[1200px] px-5 py-2" aria-label="Splide Basic HTML Example">
+    <section
+        class="splide mx-auto max-w-[1200px] px-5 py-2"
+        aria-label="Splide Basic HTML Example"
+    >
         <div class="splide__track">
             <ul class="splide__list mx-auto max-w-[1200px]">
                 <!-- 1 -->
                 @foreach ($products as $product)
                     <li class="splide__slide">
                         <div class="flex flex-col">
-                            <img class="" src="{{ $product->image }}" alt="sofa image" />
+                            <img
+                                class=""
+                                src="{{ $product->image }}"
+                                alt="sofa image"
+                            />
 
                             <div>
                                 <p class="mt-2">{{ $product->name }}</p>
@@ -169,70 +176,10 @@
                                 @endif
 
                                 <div class="flex items-center">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        class="h-4 w-4 text-yellow-400"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
+                                    <template x-for="i in 5">
+                                        <x-icons.star class="text-yellow-400" />
+                                    </template>
 
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        class="h-4 w-4 text-yellow-400"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
-
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        class="h-4 w-4 text-yellow-400"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
-
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        class="h-4 w-4 text-yellow-400"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
-
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        class="h-4 w-4 text-gray-200"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
                                     <p class="text-sm text-gray-400">(38)</p>
                                 </div>
 
@@ -261,12 +208,17 @@
                     <br />
                     TABLES & OTTOMANS
                 </p>
-                <button href="#" class="mt-6 bg-amber-400 px-4 py-2 duration-100 hover:bg-yellow-300">Shop now</button>
+                <x-secondary-button
+                    href="#"
+                    class="mt-6 bg-amber-400 px-4 py-2 duration-100 hover:bg-yellow-300"
+                >
+                    Shop now
+                </x-secondary-button>
             </div>
 
             <img
                 class="-mr-5 hidden w-[550px] object-cover md:block"
-                src="/assets/images/sale-bage.jpeg"
+                src="{{ asset('assets/images/sale-bage.jpeg') }}"
                 alt="Rainbow credit card with macbook on a background"
             />
         </section>
@@ -289,7 +241,11 @@
             <template x-for="item in products">
                 <div class="flex flex-col">
                     <div class="relative flex">
-                        <img class="" :src="item.image" alt="sofa image" />
+                        <img
+                            class=""
+                            :src="item.image"
+                            alt="sofa image"
+                        />
                         <div
                             class="absolute flex h-full w-full items-center justify-center gap-3 opacity-0 duration-150 hover:opacity-100"
                         >
@@ -328,91 +284,42 @@
                                 </svg>
                             </span>
                         </div>
-
-                        <div class="absolute right-1 mt-3 flex items-center justify-center bg-amber-400">
-                            <p class="px-2 py-2 text-sm">&minus; 25&percnt; OFF</p>
-                        </div>
+                        <template x-if="item.price && item.price.discount">
+                            <div class="absolute right-1 mt-3 flex items-center justify-center bg-amber-400">
+                                <span
+                                    class="px-2 py-2 text-sm"
+                                    x-text="'-' + item.price.discount + '% OFF'"
+                                ></span>
+                            </div>
+                        </template>
                     </div>
 
                     <div>
-                        <p class="mt-2" x-text="item.name"></p>
+                        <span
+                            class="mt-2"
+                            x-text="item.name"
+                        ></span>
                         <template x-if="item.price">
                             <p class="font-medium text-violet-900">
                                 <span x-text="item.price.sale"></span>
-                                <span class="text-sm text-gray-500 line-through" x-text="item.price.cogs"></span>
+                                <span
+                                    class="text-sm text-gray-500 line-through"
+                                    x-text="item.price.cogs"
+                                ></span>
                             </p>
                         </template>
 
                         <div class="flex items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                class="h-4 w-4 text-yellow-400"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                class="h-4 w-4 text-yellow-400"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                class="h-4 w-4 text-yellow-400"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                class="h-4 w-4 text-yellow-400"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                class="h-4 w-4 text-gray-200"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
+                            <template x-for="i in 5">
+                                <x-icons.star class="text-yellow-400" />
+                            </template>
                             <p class="text-sm text-gray-400">(38)</p>
                         </div>
 
                         <div>
-                            <button class="my-5 h-10 w-full bg-violet-900 text-white">Add to cart</button>
+                            <x-primary-button class="w-full">
+                                {{ __('Add to cart') }}
+                            </x-primary-button>
                         </div>
                     </div>
                 </div>

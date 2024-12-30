@@ -27,7 +27,6 @@ class UpdateAddressRequest extends FormRequest
     {
 
         return [
-            'address_type' => 'bail|required|exists:address_types,type|composite_unique:addresses,addressable_id,addressable_type,'.$id,
             'address_line_1' => 'required|string',
             'address_line_2' => 'nullable|string',
             'city' => 'required|string',
