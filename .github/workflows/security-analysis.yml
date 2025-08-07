@@ -1,0 +1,67 @@
+name: Security Analysis
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sundays
+
+jobs:
+  security-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.4'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, pdo_sqlite, bcmath, soap, sodium, gd, exif, zip, curl, fileinfo, tokenizer
+        tools: composer:v2
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-interaction --no-progress
+
+    - name: Run Composer Security Check
+      run: composer audit
+
+    - name: Run PHPStan Static Analysis
+      run: |
+        if [ -f vendor/bin/phpstan ]; then
+          ./vendor/bin/phpstan analyse --memory-limit=2G
+        else
+          echo "PHPStan not installed, skipping static analysis"
+        fi
+
+    - name: Run Laravel Pint
+      run: |
+        if [ -f vendor/bin/pint ]; then
+          ./vendor/bin/pint --test
+        else
+          echo "Laravel Pint not installed, skipping code style check"
+        fi
+
+    - name: Run PHP CS Fixer
+      run: |
+        if [ -f vendor/bin/php-cs-fixer ]; then
+          ./vendor/bin/php-cs-fixer fix --dry-run --diff
+        else
+          echo "PHP CS Fixer not installed, skipping code style check"
+        fi
+
+  dependency-review:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Dependency Review
+      uses: actions/dependency-review-action@v4
+      with:
+        fail-on-severity: moderate
