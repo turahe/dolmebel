@@ -18,13 +18,12 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('phone')->nullable()->unique();
             $table->string('email')->unique();
-            $table->integer('email_verified_at')->nullable();
-            $table->integer('phone_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->softDeletes();
+            $table->timestamps();
 
             $table->index('id', 'users_id_idx', 'hash');
             $table->index('username', 'users_username_idx', 'hash');
@@ -39,14 +38,6 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable();
         });
 
-        Schema::create('sessions', function (Blueprint $table): void {
-            $table->string('id')->primary();
-            $table->foreignUlid('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
-        });
     }
 
     /**
@@ -56,6 +47,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
     }
 };
