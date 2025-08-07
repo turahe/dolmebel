@@ -17,18 +17,15 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('qrcode')->unique();
             $table->string('barcode')->unique();
-            $table->foreignIdFor(\Turahe\Post\Models\Post::class, 'post_id')->index();
-            $table->foreignIdFor(\App\Models\Category::class, 'category_id')->index();
-            $table->foreignIdFor(\Turahe\Core\Models\Organization::class, 'supplier_id')->nullable()->index();
-            $table->foreignIdFor(\App\Models\Brand::class, 'brand_id')->nullable()->index();
-            $table->foreignIdFor(\Turahe\Core\Models\Organization::class, 'manufacture_id')->nullable()->index();
+            $table->ulid('post_id')->index();
+            $table->ulid('category_id')->index();
+            $table->ulid('supplier_id')->nullable()->index();
+            $table->ulid('brand_id')->nullable()->index();
+            $table->ulid('manufacture_id')->nullable()->index();
 
             $table->userstamps();
-            $table->softUserstamps();
-
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->index('id', 'products_id_idx', 'hash');
             $table->index('qrcode', 'products_qrcode_idx', 'hash');
@@ -36,8 +33,8 @@ return new class extends Migration
         });
 
         Schema::create('product_options', function (Blueprint $table): void {
-            $table->foreignIdFor(\App\Models\Product::class);
-            $table->foreignIdFor(\App\Models\Category::class, 'option_id');
+            $table->ulid('product_id');
+            $table->ulid('option_id');
             $table->uuid('option_group_id');
             $table->uuid('option_price_id')->nullable();
         });

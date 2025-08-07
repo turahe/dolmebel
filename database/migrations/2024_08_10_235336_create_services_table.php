@@ -16,21 +16,12 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('code')->unique();
-            $table->foreignUlid('post_id')->index()
-                ->references('id')
-                ->on('posts')
-                ->cascadeOnDelete();
-            $table->foreignUlid('category_id')->index()
-                ->references('id')
-                ->on('taxonomies')
-                ->cascadeOnDelete();
+            $table->ulid('post_id')->index();
+            $table->ulid('category_id')->index();
 
             $table->userstamps();
-            $table->softUserstamps();
-
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->index('id', 'services_id_idx', 'hash');
             $table->index('code', 'services_code_idx', 'hash');

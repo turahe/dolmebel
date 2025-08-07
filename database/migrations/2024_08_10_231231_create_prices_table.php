@@ -22,11 +22,8 @@ return new class extends Migration
             $table->json('metadata')->nullable();
 
             $table->userstamps();
-            $table->softUserstamps();
-
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->index('id', 'prices_id_idx', 'hash');
             $table->index('model_id', 'prices_model_id_idx', 'hash');

@@ -31,11 +31,8 @@ return new class extends Migration
             $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
 
             $table->userstamps();
-            $table->softUserstamps();
-
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['name', 'guard_name']);
         });
@@ -51,11 +48,8 @@ return new class extends Migration
             $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
 
             $table->userstamps();
-            $table->softUserstamps();
-
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
             if ($teams || config('permission.testing')) {
                 $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);

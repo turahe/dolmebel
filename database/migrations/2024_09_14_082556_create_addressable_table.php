@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('addressable.tables.addresses'), function (Blueprint $table): void {
+        Schema::create('addresses', function (Blueprint $table): void {
             $table->ulid('id')->primary();
 
             $table->ulidMorphs('model');
@@ -31,11 +31,8 @@ return new class extends Migration
             //            $table->point('position', config('addressable.srid'))->nullable();
 
             $table->userstamps();
-            $table->softUserstamps();
-
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -44,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('addressable.tables.addresses'));
+        Schema::dropIfExists('addresses');
     }
 };

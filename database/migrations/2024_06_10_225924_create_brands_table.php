@@ -18,11 +18,8 @@ return new class extends Migration
             $table->string('name');
 
             $table->userstamps();
-            $table->softUserstamps();
-
-            $table->integer('deleted_at')->index()->nullable();
-            $table->integer('created_at')->index()->nullable();
-            $table->integer('updated_at')->index()->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->index('id', 'brands_id_idx', 'hash');
         });
