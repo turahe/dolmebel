@@ -3,7 +3,22 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
+// Tailstore Routes
+Route::get('/', function () {
+    return view('tailstore.home');
+})->name('home');
+
+Route::get('/shop', function () {
+    return view('tailstore.products.catalog');
+})->name('products.catalog');
+
+Route::get('/cart', function () {
+    return view('tailstore.cart');
+})->name('cart');
+
+Route::get('/checkout', function () {
+    return view('tailstore.checkout');
+})->name('checkout');
 
 Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
