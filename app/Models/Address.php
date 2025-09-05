@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Turahe\UserStamps\Concerns\HasUserStamps;
 
 class Address extends Model
 {
-    use HasUlids;
+    use HasConfigurablePrimaryKey;
     use HasUserStamps;
     use SoftDeletes;
 
-    protected $dateFormat = 'U';
 
     protected $fillable = [
         'model_type',

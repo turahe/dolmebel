@@ -7,7 +7,7 @@ use App\Concerns\HasBanks;
 use App\Concerns\HasPhones;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,7 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasPlanSubscriptions;
     use HasRoles;
     use HasSettings;
-    use HasUlids;
+    use HasConfigurablePrimaryKey;
     use HasWallet;
     use Notifiable;
     use Searchable;

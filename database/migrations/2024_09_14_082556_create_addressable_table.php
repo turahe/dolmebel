@@ -14,7 +14,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('addresses', function (Blueprint $table): void {
-            $table->ulid('id')->primary();
+            if (config('userstamps.users_table_column_type') === 'bigincrements') {
+                $table->id();
+            }
+            if (config('userstamps.users_table_column_type') === 'ulid') {
+                $table->ulid('id')->primary();
+            }
+            if (config('userstamps.users_table_column_type') === 'uuid') {
+                $table->uuid('id')->primary();
+            }
 
             $table->ulidMorphs('model');
             $table->string('label')->nullable();
@@ -30,9 +38,26 @@ return new class extends Migration
             $table->string('country_code', 2)->nullable();
             //            $table->point('position', config('addressable.srid'))->nullable();
 
-            $table->userstamps();
             $table->timestamps();
             $table->softDeletes();
+
+            // Add foreign key constraints for userstamps
+            if (config('userstamps.users_table_column_type') === 'bigincrements') {
+                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
+            }
+
+            if (config('userstamps.users_table_column_type') === 'ulid') {
+                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
+            }
+            if (config('userstamps.users_table_column_type') === 'uuid') {
+                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
+            }
         });
     }
 

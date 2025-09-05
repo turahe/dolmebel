@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\PhoneType;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Turahe\UserStamps\Concerns\HasUserStamps;
 
 class Phone extends Model
 {
-    use HasUlids;
+    use HasConfigurablePrimaryKey;
     use HasUserStamps;
     use SoftDeletes;
 
     protected $table = 'model_phones';
 
-    public $dateFormat = 'U';
 
     protected $fillable = [
         'number',

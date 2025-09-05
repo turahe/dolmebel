@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 
 class Transaction extends \MannikJ\Laravel\Wallet\Models\Transaction
 {
-    use HasUlids;
+    use HasConfigurablePrimaryKey;
 
-    protected $dateFormat = 'U';
 }

@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
-    "@types/alpinejs": "^3.13.11",
+    "@vitejs/plugin-vue": "^6.0.0",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.4",
     "concurrently": "^9.0.1",
@@ -23,12 +23,11 @@
     "vite-plugin-pwa": "^1.0.2"
   },
   "dependencies": {
-    "@alpinejs/mask": "^3.14.7",
-    "@alpinejs/persist": "^3.14.7",
+    "@inertiajs/vue3": "^1.0.0",
     "@splidejs/splide": "^4.1.4",
-    "alpinejs": "^3.4.2",
     "meilisearch": "^0.46.0",
     "swiper": "^11.2.10",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "vue": "^3.5.13"
   }
 }

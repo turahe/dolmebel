@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
@@ -7,6 +8,14 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.ts'],
             refresh: true,
+        }),
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                },
+            },
         }),
         VitePWA({ 
             registerType: 'autoUpdate',
@@ -19,13 +28,13 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks: {
-                    vendor: ['alpinejs'],
+                    vendor: ['vue', '@inertiajs/vue3'],
                     utils: ['axios']
                 }
             }
         }
     },
     optimizeDeps: {
-        include: ['alpinejs', 'axios']
+        include: ['vue', '@inertiajs/vue3', 'axios']
     }
 });

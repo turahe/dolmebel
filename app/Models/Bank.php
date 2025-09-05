@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -14,14 +14,9 @@ use Turahe\UserStamps\Concerns\HasUserStamps;
 
 class Bank extends Model
 {
-    use HasUlids;
+    use HasConfigurablePrimaryKey;
     use HasUserStamps;
     use SoftDeletes;
-
-    /**
-     * @var string
-     */
-    protected $dateFormat = 'U';
 
     /**
      * @var string[]

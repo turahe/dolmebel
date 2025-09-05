@@ -7,7 +7,7 @@ namespace App\Models;
 use App\Concerns\HasPrice;
 use App\Contracts\CartAble;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,16 +25,11 @@ class Service extends Model implements \Turahe\Likeable\Contracts\Likeable, Cart
     use HasMedia;
     use HasPrice;
     use HasTags;
-    use HasUlids;
+    use HasConfigurablePrimaryKey;
     use HasUserStamps;
     use Likeable;
     use Searchable;
     use SoftDeletes;
-
-    /**
-     * @var string
-     */
-    public $dateFormat = 'U';
 
     protected $fillable = [
         'post_id',
