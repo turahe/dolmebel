@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Inertia\Inertia;
 use Turahe\SEOTools\Contracts\Tools;
 
 class ProfileController extends Controller
@@ -21,8 +22,9 @@ class ProfileController extends Controller
     {
         $this->meta->setTitle(__('Edit Profile'));
 
-        return view('profile.edit', [
+        return Inertia::render('Profile/Edit', [
             'user' => $request->user(),
+            'status' => session('status'),
         ]);
     }
 

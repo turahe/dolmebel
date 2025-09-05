@@ -23,7 +23,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - traefik-letsencrypt:/letsencrypt
         networks:
-            - sail
+            - turahe
         labels:
             - traefik.enable=true
             - traefik.http.routers.traefik.rule=Host(`traefik.dolmebel.com`)
@@ -31,24 +31,24 @@ services:
             - traefik.http.routers.traefik.tls.certresolver=letsencrypt
             - traefik.http.services.traefik.loadbalancer.server.port=8080
 
-    laravel.test:
+    app:
         build:
             context: ./docker/8.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.4/app
+        image: turahe/dolmebel
         restart: unless-stopped
         environment:
             WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
+            LARAVEL_turahe: 1
             APP_ENV: production
             APP_DEBUG: false
             APP_URL: https://dolmebel.com
         volumes:
             - '.:/var/www/html'
         networks:
-            - sail
+            - turahe
         depends_on:
             - pgsql
             - redis
@@ -79,7 +79,7 @@ services:
         volumes:
             - 'postgres-prod-data:/var/lib/postgresql/data'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -99,7 +99,7 @@ services:
         volumes:
             - 'redis-prod-data:/data'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -118,7 +118,7 @@ services:
         volumes:
             - 'meilisearch-prod-data:/meili_data'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -139,7 +139,7 @@ services:
         volumes:
             - 'minio-prod-data:/data'
         networks:
-            - sail
+            - turahe
         command: 'minio server /data --console-address ":8900"'
         healthcheck:
             test:
@@ -155,7 +155,7 @@ services:
         container_name: dolmebel-mailpit-prod
         restart: unless-stopped
         networks:
-            - sail
+            - turahe
         labels:
             - traefik.enable=true
             - traefik.http.routers.mailpit.rule=Host(`mailpit.dolmebel.com`)
@@ -177,7 +177,7 @@ services:
         volumes:
             - 'rabbitmq-prod-data:/var/lib/rabbitmq'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -204,7 +204,7 @@ services:
             SOKETI_DEFAULT_APP_KEY: '${PUSHER_APP_KEY}'
             SOKETI_DEFAULT_APP_SECRET: '${PUSHER_APP_SECRET}'
         networks:
-            - sail
+            - turahe
 
     mysql:
         image: 'mysql/mysql-server:8.0'
@@ -221,7 +221,7 @@ services:
         volumes:
             - 'mysql-prod-data:/var/lib/mysql'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -232,7 +232,7 @@ services:
             timeout: 5s
 
 networks:
-    sail:
+    turahe:
         driver: bridge
 
 volumes:

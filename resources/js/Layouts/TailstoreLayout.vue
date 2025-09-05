@@ -14,6 +14,6 @@
 </template>
 
 <script setup>
-import TailstoreHeader from '@/Components/Tailstore/Header.vue'
-import TailstoreFooter from '@/Components/Tailstore/Footer.vue'
+import TailstoreHeader from '@/Components/TailstoreHeader.vue'
+import TailstoreFooter from '@/Components/TailstoreFooter.vue'
 </script>

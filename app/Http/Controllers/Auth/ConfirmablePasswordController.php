@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Inertia\Inertia;
 use Turahe\SEOTools\Contracts\Tools;
 
 class ConfirmablePasswordController extends Controller
@@ -21,7 +22,7 @@ class ConfirmablePasswordController extends Controller
     {
         $this->meta->setTitle(__('Confirm Password'));
 
-        return view('auth.confirm-password');
+        return Inertia::render('Auth/ConfirmPassword');
     }
 
     /**

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
+use Inertia\Inertia;
 use Turahe\SEOTools\Contracts\Tools;
 
 class PasswordResetLinkController extends Controller
@@ -20,7 +21,9 @@ class PasswordResetLinkController extends Controller
     {
         $this->meta->setTitle(__('Forgot Password'));
 
-        return view('auth.forgot-password');
+        return Inertia::render('Auth/ForgotPassword', [
+            'status' => session('status'),
+        ]);
     }
 
     /**

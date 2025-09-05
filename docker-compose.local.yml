@@ -19,20 +19,20 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
         networks:
-            - sail
+            - turahe
         labels:
             - traefik.enable=true
             - traefik.http.routers.traefik.rule=Host(`traefik.dolmebel.local`)
             - traefik.http.routers.traefik.entrypoints=web
             - traefik.http.services.traefik.loadbalancer.server.port=8080
 
-    laravel.test:
+    app:
         build:
             context: ./docker/8.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.4/app
+        image: turahe/dolmebel
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -40,16 +40,16 @@ services:
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            LARAVEL_turahe: 1
+            XDEBUG_MODE: '${turahe_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${turahe_XDEBUG_CONFIG:-client_host=host.docker.internal}'
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
             APP_ENV: local
             APP_DEBUG: true
         volumes:
             - '.:/var/www/html'
         networks:
-            - sail
+            - turahe
         depends_on:
             - pgsql
             - redis
@@ -77,10 +77,10 @@ services:
             POSTGRES_USER: '${DB_USERNAME}'
             POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
         volumes:
-            - 'sail-pgsql:/var/lib/postgresql/data'
+            - 'turahe-pgsql:/var/lib/postgresql/data'
             - './docker/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -98,9 +98,9 @@ services:
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
-            - 'sail-redis:/data'
+            - 'turahe-redis:/data'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -116,9 +116,9 @@ services:
         environment:
             MEILI_NO_ANALYTICS: '${MEILISEARCH_NO_ANALYTICS:-false}'
         volumes:
-            - 'sail-meilisearch:/meili_data'
+            - 'turahe-meilisearch:/meili_data'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -135,12 +135,12 @@ services:
             - '${FORWARD_MINIO_PORT:-9000}:9000'
             - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
         environment:
-            MINIO_ROOT_USER: sail
+            MINIO_ROOT_USER: turahe
             MINIO_ROOT_PASSWORD: password
         volumes:
-            - 'sail-minio:/data'
+            - 'turahe-minio:/data'
         networks:
-            - sail
+            - turahe
         command: 'minio server /data --console-address ":8900"'
         healthcheck:
             test:
@@ -157,7 +157,7 @@ services:
             - '${FORWARD_MAILPIT_PORT:-1025}:1025'
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
-            - sail
+            - turahe
         labels:
             - traefik.enable=true
             - traefik.http.routers.mailpit.rule=Host(`mailpit.dolmebel.local`)
@@ -177,9 +177,9 @@ services:
             RABBITMQ_VHOST: '${RABBITMQ_VHOST}'
             RABBITMQ_QUEUE: '${RABBITMQ_QUEUE}'
         volumes:
-            - 'sail-rabbitmq:/var/lib/rabbitmq'
+            - 'turahe-rabbitmq:/var/lib/rabbitmq'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -206,7 +206,7 @@ services:
             - '${PUSHER_PORT:-6001}:6001'
             - '${PUSHER_METRICS_PORT:-9601}:9601'
         networks:
-            - sail
+            - turahe
 
     mysql:
         image: 'mysql/mysql-server:8.0'
@@ -221,10 +221,10 @@ services:
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
             MYSQL_EXTRA_OPTIONS: '${MYSQL_EXTRA_OPTIONS}'
         volumes:
-            - 'sail-mysql:/var/lib/mysql'
-            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+            - 'turahe-mysql:/var/lib/mysql'
+            - './vendor/laravel/turahe/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
-            - sail
+            - turahe
         healthcheck:
             test:
                 - CMD
@@ -235,19 +235,19 @@ services:
             timeout: 5s
 
 networks:
-    sail:
+    turahe:
         driver: bridge
 
 volumes:
-    sail-pgsql:
+    turahe-pgsql:
         driver: local
-    sail-redis:
+    turahe-redis:
         driver: local
-    sail-meilisearch:
+    turahe-meilisearch:
         driver: local
-    sail-minio:
+    turahe-minio:
         driver: local
-    sail-rabbitmq:
+    turahe-rabbitmq:
         driver: local
-    sail-mysql:
+    turahe-mysql:
         driver: local

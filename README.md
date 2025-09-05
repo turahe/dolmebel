@@ -54,7 +54,7 @@ A modern, full-featured e-commerce platform built with Laravel 12, featuring Vue
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/dolmebel.git
+git clone https://github.com/turahe/dolmebel.git
 cd dolmebel
 ```
 

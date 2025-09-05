@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Inertia\Inertia;
 use Turahe\SEOTools\Contracts\Tools;
 
 class RegisteredUserController extends Controller
@@ -20,9 +21,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $this->meta->setTitle(__('Registered Users'));
+        $this->meta->setTitle(__('Register'));
 
-        return view('auth.register');
+        return Inertia::render('Auth/Register');
     }
 
     /**

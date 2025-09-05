@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Inertia\Inertia;
 use Turahe\SEOTools\Contracts\Tools;
 
 class NewPasswordController extends Controller
@@ -24,7 +25,10 @@ class NewPasswordController extends Controller
     {
         $this->meta->setTitle(__('Reset Password'));
 
-        return view('auth.reset-password', ['request' => $request]);
+        return Inertia::render('Auth/ResetPassword', [
+            'email' => $request->email,
+            'token' => $request->route('token'),
+        ]);
     }
 
     /**
