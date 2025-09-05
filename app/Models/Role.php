@@ -11,5 +11,4 @@ class Role extends \Spatie\Permission\Models\Role
 {
     use HasConfigurablePrimaryKey;
     use HasUserStamps;
-
 }

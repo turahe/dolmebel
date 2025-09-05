@@ -7,11 +7,11 @@ namespace App\Models;
 use App\Concerns\HasPrice;
 use App\Contracts\CartAble;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Turahe\Core\Concerns\HasTags;
 use Turahe\Likeable\Traits\Likeable;
 use Turahe\Media\HasMedia;
@@ -21,11 +21,11 @@ use Turahe\UserStamps\Concerns\HasUserStamps;
 
 class Service extends Model implements \Turahe\Likeable\Contracts\Likeable, CartAble
 {
+    use HasConfigurablePrimaryKey;
     use HasContents;
     use HasMedia;
     use HasPrice;
     use HasTags;
-    use HasConfigurablePrimaryKey;
     use HasUserStamps;
     use Likeable;
     use Searchable;

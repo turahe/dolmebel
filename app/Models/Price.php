@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Turahe\UserStamps\Concerns\HasUserStamps;
 
 class Price extends Model
@@ -25,7 +25,6 @@ class Price extends Model
     use HasConfigurablePrimaryKey;
     use HasUserStamps;
     use SoftDeletes;
-
 
     protected $fillable = [
         'cogs',

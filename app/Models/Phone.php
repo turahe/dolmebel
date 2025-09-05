@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\PhoneType;
-use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Turahe\Core\Concerns\HasConfigurablePrimaryKey;
 use Turahe\UserStamps\Concerns\HasUserStamps;
 
 class Phone extends Model
@@ -17,7 +17,6 @@ class Phone extends Model
     use SoftDeletes;
 
     protected $table = 'model_phones';
-
 
     protected $fillable = [
         'number',

@@ -1,66 +1,366 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏪 Dolmebel - Laravel 12 E-commerce Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, full-featured e-commerce platform built with Laravel 12, featuring Vue.js frontend, Docker containerization, and comprehensive CI/CD workflows.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Core Framework
+- **Laravel 12** - Latest Laravel framework with PHP 8.4 support
+- **Vue.js 3** - Modern reactive frontend with Inertia.js
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Vite 7** - Lightning-fast build tool
+- **TypeScript** - Type-safe JavaScript development
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### E-commerce Features
+- **Product Management** - Complete product catalog with categories, brands, and suppliers
+- **Shopping Cart** - Full cart functionality with session management
+- **Checkout Process** - Secure checkout with multiple payment methods
+- **Order Management** - Comprehensive order tracking and management
+- **Inventory Management** - Real-time inventory tracking
+- **Pricing System** - Flexible pricing with discounts and promotions
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### User Management
+- **Authentication** - Laravel Breeze authentication system
+- **User Roles & Permissions** - Spatie Laravel Permission package
+- **Profile Management** - Complete user profile system
+- **Address Management** - Multiple addresses per user
+- **Wallet System** - Digital wallet functionality
 
-## Learning Laravel
+### Content Management
+- **Blog System** - Full blog with categories and tags
+- **FAQ Management** - Dynamic FAQ system
+- **Page Management** - Custom pages with SEO optimization
+- **Media Management** - File upload and management system
+- **SEO Tools** - Built-in SEO optimization
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Development Features
+- **Docker Support** - Complete Docker containerization with Laravel Sail
+- **Traefik Integration** - Reverse proxy with automatic SSL
+- **Multiple Environments** - Local and production configurations
+- **CI/CD Workflows** - GitHub Actions for testing and deployment
+- **Code Quality** - PHPStan, Laravel Pint, and PHP CS Fixer
+- **Testing** - Comprehensive test suite with PHPUnit
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📋 Requirements
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP**: 8.2 or higher (8.4 recommended)
+- **Composer**: 2.0 or higher
+- **Node.js**: 18 or higher (20 recommended)
+- **npm**: 9 or higher
+- **Docker**: 20.10 or higher
+- **Docker Compose**: 2.0 or higher
 
-## Laravel Sponsors
+## 🛠️ Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/dolmebel.git
+cd dolmebel
+```
 
-### Premium Partners
+### 2. Install Dependencies
+```bash
+# Install PHP dependencies
+composer install
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Install Node.js dependencies
+npm install --legacy-peer-deps
+```
 
-## Contributing
+### 3. Environment Setup
+```bash
+# Copy environment file
+cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Generate application key
+php artisan key:generate
 
-## Code of Conduct
+# Create SQLite database for testing
+touch database/database.sqlite
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Database Setup
+```bash
+# Run migrations
+php artisan migrate
 
-## Security Vulnerabilities
+# Seed the database
+php artisan db:seed
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Build Assets
+```bash
+# Build frontend assets
+npm run build
 
-## License
+# Or for development
+npm run dev
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🐳 Docker Setup
+
+### Quick Start with Docker
+
+#### For Local Development:
+```bash
+# Linux/macOS
+bash sail-env.sh start-local
+
+# Windows
+.\sail-env.bat start-local
+```
+
+#### For Production:
+```bash
+# Linux/macOS
+bash sail-env.sh start-prod
+
+# Windows
+.\sail-env.bat start-prod
+```
+
+### Manual Docker Commands
+
+#### Local Environment:
+```bash
+# Start local development
+php vendor/bin/sail -f docker-compose.local.yml up -d
+
+# Access application
+# http://dolmebel.local
+```
+
+#### Production Environment:
+```bash
+# Start production
+php vendor/bin/sail -f docker-compose.prod.yml up -d
+
+# Access application
+# https://dolmebel.com
+```
+
+### Docker Services Included
+
+- **Laravel Application** - Main application container
+- **MySQL** - Database server
+- **Redis** - Caching and session storage
+- **Meilisearch** - Search engine
+- **MinIO** - S3-compatible object storage
+- **Mailpit** - Email testing
+- **RabbitMQ** - Message queue
+- **Soketi** - WebSocket server
+- **Traefik** - Reverse proxy with SSL
+
+## 🌐 Access Points
+
+### Local Development
+- **Main Application**: http://dolmebel.local
+- **Traefik Dashboard**: http://traefik.dolmebel.local
+- **Mailpit**: http://mailpit.dolmebel.local
+- **RabbitMQ**: http://rabbitmq.dolmebel.local
+
+### Production
+- **Main Application**: https://dolmebel.com
+- **Traefik Dashboard**: https://traefik.dolmebel.com
+- **Mailpit**: https://mailpit.dolmebel.com
+- **RabbitMQ**: https://rabbitmq.dolmebel.com
+
+## 🧪 Testing
+
+### Run Tests
+```bash
+# Run all tests
+php artisan test
+
+# Run with coverage
+php artisan test --coverage
+
+# Run specific test suite
+php artisan test --testsuite=Feature
+php artisan test --testsuite=Unit
+```
+
+### Test Configuration
+- **PHPUnit** - Unit and feature testing
+- **SQLite** - In-memory database for testing
+- **Faker** - Test data generation
+- **Mockery** - Mocking framework
+
+## 🔧 Development Tools
+
+### Code Quality
+```bash
+# Laravel Pint (Code formatting)
+./vendor/bin/pint
+
+# PHPStan (Static analysis)
+./vendor/bin/phpstan analyse
+
+# PHP CS Fixer
+./vendor/bin/php-cs-fixer fix
+```
+
+### Frontend Development
+```bash
+# Start Vite dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Watch for changes
+npm run watch
+```
+
+### Database Management
+```bash
+# Run migrations
+php artisan migrate
+
+# Rollback migrations
+php artisan migrate:rollback
+
+# Seed database
+php artisan db:seed
+
+# Fresh migration with seeding
+php artisan migrate:fresh --seed
+```
+
+## 📁 Project Structure
+
+```
+dolmebel/
+├── app/
+│   ├── Concerns/           # Shared concerns and traits
+│   ├── Contracts/          # Repository interfaces
+│   ├── Enums/             # PHP enums
+│   ├── Events/            # Event classes
+│   ├── Http/
+│   │   ├── Controllers/   # Application controllers
+│   │   └── Requests/      # Form request validation
+│   ├── Models/            # Eloquent models
+│   ├── Notifications/     # Email notifications
+│   ├── Providers/         # Service providers
+│   └── Repositories/      # Repository implementations
+├── config/                 # Configuration files
+├── database/
+│   ├── factories/         # Model factories
+│   ├── migrations/         # Database migrations
+│   └── seeders/           # Database seeders
+├── resources/
+│   ├── css/               # Stylesheets
+│   ├── js/
+│   │   ├── components/    # Vue components
+│   │   └── Pages/         # Inertia pages
+│   └── views/             # Blade templates
+├── routes/                # Route definitions
+├── tests/                 # Test files
+├── docker-compose.yml     # Main Docker Compose
+├── docker-compose.local.yml  # Local environment
+├── docker-compose.prod.yml   # Production environment
+├── sail-env.sh           # Linux/macOS management script
+├── sail-env.bat           # Windows management script
+└── README.md              # This file
+```
+
+## 🔄 CI/CD Workflows
+
+### GitHub Actions
+
+#### Test Workflow (`.github/workflows/run-tests.yml`)
+- **PHP 8.4** with all required extensions
+- **MySQL 8.0** service
+- **Node.js 20** with npm caching
+- **Composer** dependency installation
+- **Laravel** testing with coverage
+- **Codecov** integration
+
+#### Security Analysis (`.github/workflows/security-analysis.yml`)
+- **Composer Audit** - Dependency vulnerability scanning
+- **PHPStan** - Static analysis
+- **Laravel Pint** - Code formatting
+- **PHP CS Fixer** - Code style fixing
+- **Dependency Review** - Security review
+
+#### Deployment (`.github/workflows/deploy.yml`)
+- **SSH Deployment** - Secure server deployment
+- **Asset Building** - Frontend compilation
+- **Database Migrations** - Production migrations
+- **Service Reload** - Application restart
+
+## 🚀 Deployment
+
+### Production Deployment
+
+1. **Server Requirements**:
+   - Ubuntu 20.04+ or similar
+   - Docker and Docker Compose
+   - SSH access
+   - Domain name configured
+
+2. **Environment Variables**:
+   ```env
+   APP_ENV=production
+   APP_DEBUG=false
+   DB_CONNECTION=mysql
+   DB_HOST=mysql
+   DB_DATABASE=dolmebel
+   DB_USERNAME=dolmebel
+   DB_PASSWORD=your_secure_password
+   ```
+
+3. **Deploy**:
+   ```bash
+   # Using GitHub Actions (automatic)
+   git push origin main
+
+   # Manual deployment
+   php vendor/bin/sail -f docker-compose.prod.yml up -d
+   ```
+
+## 📚 Documentation
+
+- **[Docker Environments](DOCKER-ENVIRONMENTS.md)** - Complete Docker setup guide
+- **[GitHub Workflows](.github/workflows/README.md)** - CI/CD documentation
+- **[Laravel Documentation](https://laravel.com/docs)** - Official Laravel docs
+- **[Vue.js Documentation](https://vuejs.org/guide/)** - Vue.js guide
+- **[Inertia.js Documentation](https://inertiajs.com/)** - Inertia.js guide
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- Follow PSR-12 coding standards
+- Write tests for new features
+- Update documentation as needed
+- Use conventional commit messages
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Issues**: [GitHub Issues](https://github.com/your-username/dolmebel/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/your-username/dolmebel/discussions)
+- **Email**: support@dolmebel.com
+
+## 🙏 Acknowledgments
+
+- [Laravel](https://laravel.com/) - The PHP framework
+- [Vue.js](https://vuejs.org/) - The progressive JavaScript framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Inertia.js](https://inertiajs.com/) - The modern monolith
+- [Traefik](https://traefik.io/) - The cloud native application proxy
+- [Docker](https://www.docker.com/) - Containerization platform
+
+---
+
+**Built with ❤️ using Laravel 12, Vue.js 3, and modern web technologies.**

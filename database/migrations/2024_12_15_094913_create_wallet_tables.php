@@ -36,25 +36,25 @@ return new class extends Migration
                 }
 
                 $table->timestamps();
-            $table->softDeletes();
+                $table->softDeletes();
 
-            // Add foreign key constraints for userstamps
-            if (config('userstamps.users_table_column_type') === 'bigincrements') {
-                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
-            }
+                // Add foreign key constraints for userstamps
+                if (config('userstamps.users_table_column_type') === 'bigincrements') {
+                    $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+                    $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+                    $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
+                }
 
-            if (config('userstamps.users_table_column_type') === 'ulid') {
-                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
-            }
-            if (config('userstamps.users_table_column_type') === 'uuid') {
-                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
-            }
+                if (config('userstamps.users_table_column_type') === 'ulid') {
+                    $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+                    $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+                    $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
+                }
+                if (config('userstamps.users_table_column_type') === 'uuid') {
+                    $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+                    $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+                    $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
+                }
             });
         }
         $transactionModelClass = config('wallet.transaction_model');
