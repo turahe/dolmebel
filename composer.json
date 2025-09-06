@@ -20,6 +20,7 @@
         "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-permission": "^6.9",
         "spatie/laravel-webhook-client": "^3.4",
+        "tightenco/ziggy": "^2.5",
         "turahe/laravel-likeable": "^1.0",
         "turahe/media": "^1.0",
         "turahe/post": "^1.2",

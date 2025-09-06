@@ -10,7 +10,7 @@
                                 <div class="max-w-2xl">
                                     <h1 class="text-5xl font-bold mb-6">Welcome to Tailstore</h1>
                                     <p class="text-xl mb-8">Discover amazing products at unbeatable prices</p>
-                                    <Link href="/shop" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                                    <Link :href="route('products.catalog')" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                                         Shop Now
                                     </Link>
                                 </div>
@@ -23,7 +23,7 @@
                                 <div class="max-w-2xl">
                                     <h1 class="text-5xl font-bold mb-6">New Collection</h1>
                                     <p class="text-xl mb-8">Explore our latest arrivals and trending items</p>
-                                    <Link href="/shop" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                                    <Link :href="route('products.catalog')" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                                         Explore
                                     </Link>
                                 </div>
@@ -59,13 +59,13 @@
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center mb-12">
                     <h2 class="text-3xl font-bold">Featured Products</h2>
-                    <Link href="/shop" class="text-blue-600 hover:text-blue-700 font-semibold">
+                    <Link :href="route('products.catalog')" class="text-blue-600 hover:text-blue-700 font-semibold">
                         View All →
                     </Link>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div v-for="product in featuredProducts" :key="product.id" class="bg-white rounded-lg shadow-sm overflow-hidden group">
-                        <Link :href="`/product/${product.slug}`">
+                        <Link :href="route('product.detail', product.slug)">
                             <div class="relative">
                                 <img :src="product.image" :alt="product.name" class="w-full h-64 object-cover group-hover:scale-105 transition-transform">
                                 <div class="absolute top-4 right-4">
@@ -142,6 +142,9 @@
 import { ref, onMounted } from 'vue'
 import { Link } from '@inertiajs/vue3'
 import TailstoreLayout from '@/Layouts/TailstoreLayout.vue'
+import Swiper from 'swiper'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import { route } from 'ziggy-js'
 
 // Sample data - replace with actual data from your backend
 const categories = ref([
@@ -179,10 +182,10 @@ const subscribeNewsletter = () => {
 
 onMounted(() => {
     // Initialize Swiper after component is mounted
-    if (window.Swiper) {
+    try {
         // Hero Slider
-        new window.Swiper('.hero-swiper', {
-            modules: [window.Swiper.Navigation, window.Swiper.Pagination, window.Swiper.Autoplay],
+        new Swiper('.hero-swiper', {
+            modules: [Navigation, Pagination, Autoplay],
             loop: true,
             autoplay: {
                 delay: 5000,
@@ -199,8 +202,8 @@ onMounted(() => {
         })
 
         // Brand Carousel
-        new window.Swiper('.brand-swiper', {
-            modules: [window.Swiper.Autoplay],
+        new Swiper('.brand-swiper', {
+            modules: [Autoplay],
             slidesPerView: 2,
             spaceBetween: 20,
             loop: true,
@@ -220,6 +223,8 @@ onMounted(() => {
                 },
             },
         })
+    } catch (error) {
+        console.error('Swiper initialization error:', error)
     }
 })
 </script>

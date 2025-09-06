@@ -36,28 +36,28 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('country_code', 2)->nullable();
-            //            $table->point('position', config('addressable.srid'))->nullable();
+            //            $table->point('position', config('addressable.srid'))->nullable();            // Add userstamp columns
+            $userstampsType = config('userstamps.users_table_column_type', 'bigincrements');
+            if ($userstampsType === 'ulid') {
+                $table->ulid('created_by')->nullable()->index();
+                $table->ulid('updated_by')->nullable()->index();
+                $table->ulid('deleted_by')->nullable()->index();
+            } elseif ($userstampsType === 'uuid') {
+                $table->uuid('created_by')->nullable()->index();
+                $table->uuid('updated_by')->nullable()->index();
+                $table->uuid('deleted_by')->nullable()->index();
+            } else {
+                $table->unsignedBigInteger('created_by')->nullable()->index();
+                $table->unsignedBigInteger('updated_by')->nullable()->index();
+                $table->unsignedBigInteger('deleted_by')->nullable()->index();
+            }
+
+
 
             $table->timestamps();
             $table->softDeletes();
 
-            // Add foreign key constraints for userstamps
-            if (config('userstamps.users_table_column_type') === 'bigincrements') {
-                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
-            }
-
-            if (config('userstamps.users_table_column_type') === 'ulid') {
-                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
-            }
-            if (config('userstamps.users_table_column_type') === 'uuid') {
-                $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-                $table->foreign('deleted_by')->references('id')->on('users')->onDelete('set null');
-            }
+            // Foreign key constraints will be added in a separate migration`n            // to avoid PostgreSQL constraint issues
         });
     }
 

@@ -1,22 +1,20 @@
-# Docker Compose Local & Production Environments
+# Docker Compose Unified Environment
 
-This guide explains how to use separate Docker Compose configurations for local development and production environments with Traefik.
+This guide explains how to use the unified Docker Compose configuration that works for both development and production environments with Traefik.
 
 ## 🏗️ Architecture Overview
 
-### Local Development (`docker-compose.local.yml`)
-- **Domain**: `dolmebel.local`
-- **SSL**: HTTP only (no SSL certificates)
-- **Debug**: Enabled
-- **Volumes**: Bind mounts for live code changes
-- **Services**: All development tools enabled
+### Unified Configuration (`docker-compose.yml`)
+- **Single File**: Works for both development and production
+- **Environment-Based**: Configured via environment variables
+- **Traefik Integration**: Automatic SSL and routing
+- **Security**: No internal ports exposed
+- **Production Ready**: Container names, restart policies, health checks
 
-### Production (`docker-compose.prod.yml`)
-- **Domain**: `dolmebel.com`
-- **SSL**: HTTPS with Let's Encrypt certificates
-- **Debug**: Disabled
-- **Volumes**: Named volumes for data persistence
-- **Services**: Optimized for production
+### Optional Local Development (`docker-compose.local.yml`)
+- **Simplified**: HTTP-only configuration for local development
+- **Fast Setup**: No SSL certificates needed
+- **Development Tools**: All debugging services enabled
 
 ## 🚀 Quick Start
 
@@ -33,226 +31,224 @@ git clone <your-repo>
 cd dolmebel
 ```
 
-### 2. Choose Your Environment
+### 2. Environment Configuration
 
-#### For Local Development:
+Create a `.env` file in the project root:
+
 ```bash
-# Linux/macOS
-bash sail-env.sh start-local
+# Application Configuration
+APP_ENV=local                    # or 'production'
+APP_DEBUG=true                   # or 'false' for production
+APP_URL=http://dolmebel.local    # or 'https://dolmebel.com' for production
 
-# Windows
-.\sail-env.bat start-local
+# Domain Configuration
+DOMAIN=dolmebel.com
+
+# Traefik Configuration
+# For Development (HTTP):
+TRAEFIK_ENTRYPOINT=web
+TRAEFIK_PROTO=http
+TRAEFIK_CERT_RESOLVER=
+
+# For Production (HTTPS):
+# TRAEFIK_ENTRYPOINT=websecure
+# TRAEFIK_PROTO=https
+# TRAEFIK_CERT_RESOLVER=letsencrypt
+
+# Database Configuration
+DB_DATABASE=dolmebel
+DB_USERNAME=dolmebel
+DB_PASSWORD=your-secure-password
+
+# Service Configuration
+MEILISEARCH_KEY=your-meilisearch-key
+MINIO_ROOT_USER=admin
+MINIO_ROOT_PASSWORD=your-secure-password
+RABBITMQ_USER=admin
+RABBITMQ_PASSWORD=your-secure-password
+RABBITMQ_VHOST=/
+RABBITMQ_QUEUE=default
+PUSHER_APP_ID=app-id
+PUSHER_APP_KEY=app-key
+PUSHER_APP_SECRET=app-secret
+ACME_EMAIL=admin@dolmebel.com
+
+# Docker User Configuration
+WWWGROUP=1000
+WWWUSER=1000
 ```
 
-#### For Production:
-```bash
-# Linux/macOS
-bash sail-env.sh start-prod
+### 3. Choose Your Environment
 
-# Windows
-.\sail-env.bat start-prod
+#### For Development (HTTP):
+```bash
+# Uses unified configuration with HTTP
+docker-compose up -d
+```
+
+#### For Production (HTTPS):
+```bash
+# Set production environment variables
+export APP_ENV=production
+export APP_DEBUG=false
+export APP_URL=https://dolmebel.com
+export TRAEFIK_ENTRYPOINT=websecure
+export TRAEFIK_PROTO=https
+export TRAEFIK_CERT_RESOLVER=letsencrypt
+
+# Start services
+docker-compose up -d
+```
+
+#### For Local Development (Optional):
+```bash
+# Uses simplified local configuration
+docker-compose -f docker-compose.local.yml up -d
 ```
 
 ## 🌐 Access Points
 
-### Local Development
+### Development (HTTP)
 - **Main Application**: http://dolmebel.local
-- **Traefik Dashboard**: http://traefik.dolmebel.local
+- **Traefik Dashboard**: http://traefik.dolmebel.local:8080
 - **Mailpit**: http://mailpit.dolmebel.local
 - **RabbitMQ Management**: http://rabbitmq.dolmebel.local
 
-### Production
+### Production (HTTPS)
 - **Main Application**: https://dolmebel.com
 - **Traefik Dashboard**: https://traefik.dolmebel.com
 - **Mailpit**: https://mailpit.dolmebel.com
 - **RabbitMQ Management**: https://rabbitmq.dolmebel.com
 
-## 📋 Environment Configurations
+## 📋 Service Configuration
 
-### Local Development Features
+### Core Services
 
-#### `docker-compose.local.yml`
-- **HTTP Only**: No SSL certificates for faster development
-- **Debug Mode**: Full debugging enabled
-- **Live Reload**: Code changes reflect immediately
-- **Development Tools**: All debugging services enabled
-- **Local Domain**: Uses `.local` TLD for local development
+| Service | Purpose | Internal Port | External Access |
+|---------|---------|---------------|-----------------|
+| **Traefik** | Reverse Proxy | 80, 443, 8080 | ✅ HTTP/HTTPS + Dashboard |
+| **App** | Laravel Application | 80 | ✅ Via Traefik |
+| **PostgreSQL** | Database | 5432 | ❌ Internal Only |
+| **Redis** | Cache/Sessions | 6379 | ❌ Internal Only |
+| **Meilisearch** | Search Engine | 7700 | ❌ Internal Only |
+| **MinIO** | Object Storage | 9000, 8900 | ❌ Internal Only |
+| **Mailpit** | Email Testing | 8025 | ✅ Via Traefik |
+| **RabbitMQ** | Message Queue | 5672, 15672 | ✅ Via Traefik |
+| **Soketi** | WebSocket Server | 6001, 9601 | ❌ Internal Only |
 
-#### `env.local`
-```env
-APP_ENV=local
-APP_DEBUG=true
-APP_URL=http://dolmebel.local
-DOMAIN=dolmebel.local
-LOG_LEVEL=debug
-```
+### Security Features
 
-### Production Features
-
-#### `docker-compose.prod.yml`
-- **HTTPS Only**: Automatic SSL certificates via Let's Encrypt
-- **Production Optimized**: Debug disabled, caching enabled
-- **Data Persistence**: Named volumes for data safety
-- **Security**: Enhanced security configurations
-- **Real Domain**: Uses actual domain for production
-
-#### `env.prod`
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://dolmebel.com
-DOMAIN=dolmebel.com
-LOG_LEVEL=error
-SESSION_ENCRYPT=true
-```
+- ✅ **No Internal Ports Exposed**: All services communicate internally
+- ✅ **Traefik Routing**: Single entry point for external access
+- ✅ **SSL Support**: Automatic HTTPS with Let's Encrypt
+- ✅ **Container Names**: Explicit naming for better management
+- ✅ **Restart Policies**: `unless-stopped` for production reliability
+- ✅ **Health Checks**: Automatic service health monitoring
 
 ## 🛠️ Management Commands
 
-### Using Environment Scripts
-
-#### Linux/macOS (`sail-env.sh`):
-```bash
-# Start environments
-bash sail-env.sh start-local       # Start local development
-bash sail-env.sh start-prod        # Start production
-
-# Stop environments
-bash sail-env.sh stop local         # Stop local environment
-bash sail-env.sh stop prod          # Stop production environment
-bash sail-env.sh stop               # Stop all environments
-
-# Restart environments
-bash sail-env.sh restart local      # Restart local environment
-bash sail-env.sh restart prod       # Restart production environment
-
-# View logs
-bash sail-env.sh logs local         # View local logs
-bash sail-env.sh logs prod          # View production logs
-
-# Check status
-bash sail-env.sh status local       # Check local status
-bash sail-env.sh status prod         # Check production status
-
-# Run commands
-bash sail-env.sh artisan local migrate # Run artisan in local
-bash sail-env.sh artisan prod migrate  # Run artisan in production
-bash sail-env.sh npm local run dev     # Run npm in local
-bash sail-env.sh npm prod run build    # Run npm in production
-
-# Setup environment
-bash sail-env.sh setup local        # Setup local environment
-bash sail-env.sh setup prod         # Setup production environment
-```
-
-#### Windows (`sail-env.bat`):
-```cmd
-# Start environments
-.\sail-env.bat start-local        # Start local development
-.\sail-env.bat start-prod         # Start production
-
-# Stop environments
-.\sail-env.bat stop local          # Stop local environment
-.\sail-env.bat stop prod           # Stop production environment
-.\sail-env.bat stop                # Stop all environments
-
-# Restart environments
-.\sail-env.bat restart local       # Restart local environment
-.\sail-env.bat restart prod        # Restart production environment
-
-# View logs
-.\sail-env.bat logs local          # View local logs
-.\sail-env.bat logs prod           # View production logs
-
-# Check status
-.\sail-env.bat status local        # Check local status
-.\sail-env.bat status prod          # Check production status
-
-# Run commands
-.\sail-env.bat artisan local migrate # Run artisan in local
-.\sail-env.bat artisan prod migrate  # Run artisan in production
-.\sail-env.bat npm local run dev     # Run npm in local
-.\sail-env.bat npm prod run build    # Run npm in production
-
-# Setup environment
-.\sail-env.bat setup local         # Setup local environment
-.\sail-env.bat setup prod          # Setup production environment
-```
-
-### Direct Sail Commands
+### Using Unified Configuration
 
 ```bash
-# Local environment
-php vendor/bin/sail -f docker-compose.local.yml up -d
-php vendor/bin/sail -f docker-compose.local.yml down
-php vendor/bin/sail -f docker-compose.local.yml artisan migrate
-php vendor/bin/sail -f docker-compose.local.yml npm run dev
+# Start services
+docker-compose up -d
 
-# Production environment
-php vendor/bin/sail -f docker-compose.prod.yml up -d
-php vendor/bin/sail -f docker-compose.prod.yml down
-php vendor/bin/sail -f docker-compose.prod.yml artisan migrate --force
-php vendor/bin/sail -f docker-compose.prod.yml npm run build
+# Stop services
+docker-compose down
+
+# View logs
+docker-compose logs -f
+docker-compose logs -f app
+docker-compose logs -f traefik
+
+# Check status
+docker-compose ps
+
+# Restart services
+docker-compose restart
+docker-compose restart app
+
+# Run Laravel commands
+docker-compose exec app php artisan migrate
+docker-compose exec app php artisan tinker
+docker-compose exec app composer install
+
+# Run NPM commands
+docker-compose exec app npm install
+docker-compose exec app npm run dev
+docker-compose exec app npm run build
 ```
 
-## 🔧 Configuration Details
+### Using Local Configuration (Optional)
+
+```bash
+# Start local services
+docker-compose -f docker-compose.local.yml up -d
+
+# Stop local services
+docker-compose -f docker-compose.local.yml down
+
+# Run commands in local environment
+docker-compose -f docker-compose.local.yml exec app php artisan migrate
+```
+
+## 🔧 Environment Variables Reference
+
+### Application Configuration
+```bash
+APP_ENV=local                    # Environment: local, production
+APP_DEBUG=true                  # Debug mode: true, false
+APP_URL=http://dolmebel.local   # Application URL
+```
+
+### Domain Configuration
+```bash
+DOMAIN=dolmebel.com             # Base domain for subdomains
+```
 
 ### Traefik Configuration
+```bash
+TRAEFIK_ENTRYPOINT=web          # Entrypoint: web (HTTP), websecure (HTTPS)
+TRAEFIK_PROTO=http              # Protocol: http, https
+TRAEFIK_CERT_RESOLVER=          # SSL resolver: letsencrypt, empty
+```
 
-#### Local Development
-- **API Dashboard**: Insecure (HTTP)
-- **SSL**: Disabled
-- **Certificates**: None
-- **Logging**: Debug level
+### Database Configuration
+```bash
+DB_DATABASE=dolmebel            # Database name
+DB_USERNAME=dolmebel            # Database user
+DB_PASSWORD=your-password       # Database password
+```
 
-#### Production
-- **API Dashboard**: Secure (HTTPS)
-- **SSL**: Enabled with Let's Encrypt
-- **Certificates**: Automatic renewal
-- **Logging**: Info level
+### Service Configuration
+```bash
+# Meilisearch
+MEILISEARCH_KEY=your-key        # Master key for Meilisearch
 
-### Service Differences
+# MinIO
+MINIO_ROOT_USER=admin          # MinIO root user
+MINIO_ROOT_PASSWORD=password   # MinIO root password
 
-| Service | Local | Production |
-|---------|-------|------------|
-| **SSL** | HTTP only | HTTPS with Let's Encrypt |
-| **Debug** | Enabled | Disabled |
-| **Volumes** | Bind mounts | Named volumes |
-| **Restart Policy** | unless-stopped | unless-stopped |
-| **Container Names** | `-local` suffix | `-prod` suffix |
-| **Data Persistence** | Development data | Production data |
+# RabbitMQ
+RABBITMQ_USER=admin            # RabbitMQ user
+RABBITMQ_PASSWORD=password     # RabbitMQ password
+RABBITMQ_VHOST=/               # RabbitMQ virtual host
+RABBITMQ_QUEUE=default         # Default queue name
 
-### Environment Variables
+# Pusher/Soketi
+PUSHER_APP_ID=app-id           # Pusher app ID
+PUSHER_APP_KEY=app-key         # Pusher app key
+PUSHER_APP_SECRET=app-secret   # Pusher app secret
 
-#### Local (`env.local`)
-- `APP_ENV=local`
-- `APP_DEBUG=true`
-- `APP_URL=http://dolmebel.local`
-- `DOMAIN=dolmebel.local`
-- `LOG_LEVEL=debug`
-- `SESSION_ENCRYPT=false`
-
-#### Production (`env.prod`)
-- `APP_ENV=production`
-- `APP_DEBUG=false`
-- `APP_URL=https://dolmebel.com`
-- `DOMAIN=dolmebel.com`
-- `LOG_LEVEL=error`
-- `SESSION_ENCRYPT=true`
+# Let's Encrypt
+ACME_EMAIL=admin@dolmebel.com  # Email for SSL certificates
+```
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-1. **Environment file not found**
-   ```bash
-   # Check available environment files
-   ls env.*
-   
-   # Setup environment
-   ./sail-env.sh setup local
-   ```
-
-2. **Port conflicts**
+1. **Port conflicts**
    ```bash
    # Check what's using ports
    netstat -tulpn | grep :80
@@ -262,42 +258,50 @@ php vendor/bin/sail -f docker-compose.prod.yml npm run build
    sudo systemctl stop apache2  # or nginx
    ```
 
-3. **SSL certificate issues (Production)**
+2. **SSL certificate issues (Production)**
    ```bash
    # Check Traefik logs
-   ./sail-env.sh logs prod
+   docker-compose logs traefik
    
    # Verify domain DNS
    nslookup dolmebel.com
    ```
 
-4. **Database connection issues**
+3. **Database connection issues**
    ```bash
    # Check database logs
-   ./sail-env.sh logs prod
+   docker-compose logs pgsql
    
    # Test connection
-   ./sail-env.sh artisan prod tinker
+   docker-compose exec app php artisan tinker
    # Then run: DB::connection()->getPdo();
    ```
 
-### Reset Environments
+4. **Application not accessible**
+   ```bash
+   # Check app logs
+   docker-compose logs app
+   
+   # Check Traefik routing
+   curl -I http://dolmebel.local
+   ```
+
+### Reset Environment
 
 ```bash
-# Reset local environment
-./sail-env.sh stop local
-docker volume prune -f
-./sail-env.sh start-local
+# Stop all services
+docker-compose down
 
-# Reset production environment
-./sail-env.sh stop prod
+# Remove volumes (WARNING: This will delete all data)
 docker volume prune -f
-./sail-env.sh start-prod
+
+# Restart services
+docker-compose up -d
 ```
 
 ## 🔒 Security Considerations
 
-### Local Development
+### Development
 - HTTP only (no SSL)
 - Debug mode enabled
 - Development passwords
@@ -309,6 +313,68 @@ docker volume prune -f
 - Secure passwords required
 - Real domain with SSL
 - Data encryption enabled
+- No internal ports exposed
+
+## 📁 File Structure
+
+```
+├── docker-compose.yml          # ✅ Unified configuration
+├── docker-compose.local.yml    # ✅ Optional local development
+├── docs/
+│   ├── DOCKER-ENVIRONMENTS.md  # ✅ This documentation
+│   └── DOCKER-ENVIRONMENTS.md  # ✅ Previous documentation
+├── data/                       # ✅ Local data persistence
+│   ├── postgres/
+│   ├── redis/
+│   ├── meilisearch/
+│   ├── minio/
+│   ├── rabbitmq/
+│   └── traefik/
+└── .env                        # ✅ Environment configuration
+```
+
+## 🚀 Deployment
+
+### Development Deployment
+```bash
+# Clone repository
+git clone <your-repo>
+cd dolmebel
+
+# Copy environment file
+cp .env.example .env
+
+# Start services
+docker-compose up -d
+
+# Run migrations
+docker-compose exec app php artisan migrate
+
+# Install dependencies
+docker-compose exec app composer install
+docker-compose exec app npm install
+```
+
+### Production Deployment
+```bash
+# Set production environment
+export APP_ENV=production
+export APP_DEBUG=false
+export APP_URL=https://dolmebel.com
+export TRAEFIK_ENTRYPOINT=websecure
+export TRAEFIK_PROTO=https
+export TRAEFIK_CERT_RESOLVER=letsencrypt
+
+# Start services
+docker-compose up -d
+
+# Run production setup
+docker-compose exec app php artisan migrate --force
+docker-compose exec app php artisan config:cache
+docker-compose exec app php artisan route:cache
+docker-compose exec app php artisan view:cache
+docker-compose exec app npm run build
+```
 
 ## 📚 Additional Resources
 
@@ -321,12 +387,11 @@ docker volume prune -f
 
 When adding new services:
 
-1. Add to both `docker-compose.local.yml` and `docker-compose.prod.yml`
-2. Configure appropriate settings for each environment
-3. Update environment files (`env.local` and `env.prod`)
-4. Update management scripts
-5. Update this documentation
-6. Test both environments
+1. Add to `docker-compose.yml` with environment-based configuration
+2. Configure appropriate settings for both development and production
+3. Update environment variables documentation
+4. Update this documentation
+5. Test both environments
 
 ## 📝 License
 

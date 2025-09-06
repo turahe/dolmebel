@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function detail(string $slug)
     {
         $product = app(ProductRepositoryInterface::class)->getProductBySlug($slug);
-        
+
         // Sample related products - replace with actual related products logic
         $relatedProducts = [];
 
