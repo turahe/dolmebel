@@ -1,23 +1,29 @@
 <template>
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center pt-6 sm:justify-center sm:pt-0">
+    <div
+        class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900"
+    >
         <!-- Logo -->
         <div class="mb-6">
             <Link href="/" class="block">
-                <div class="h-24 w-24 mx-auto">
-                    <div class="w-full h-full bg-primary rounded-lg flex items-center justify-center">
-                        <span class="text-white text-2xl font-bold">D</span>
+                <div class="mx-auto h-24 w-24">
+                    <div
+                        class="bg-primary flex h-full w-full items-center justify-center rounded-lg"
+                    >
+                        <span class="text-2xl font-bold text-white">D</span>
                     </div>
                 </div>
             </Link>
         </div>
 
         <!-- Auth Card -->
-        <div class="w-full max-w-md bg-white dark:bg-gray-800 shadow-md rounded-lg px-6 py-8">
+        <div
+            class="w-full max-w-md rounded-lg bg-white px-6 py-8 shadow-md dark:bg-gray-800"
+        >
             <slot />
         </div>
     </div>
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link } from "@inertiajs/vue3";
 </script>

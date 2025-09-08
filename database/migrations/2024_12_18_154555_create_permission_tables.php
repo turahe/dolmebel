@@ -52,8 +52,6 @@ return new class extends Migration
                 $table->unsignedBigInteger('deleted_by')->nullable()->index();
             }
 
-
-
             $table->timestamps();
             $table->softDeletes();
 
@@ -83,8 +81,6 @@ return new class extends Migration
                 $table->unsignedBigInteger('updated_by')->nullable()->index();
                 $table->unsignedBigInteger('deleted_by')->nullable()->index();
             }
-
-
 
             $table->timestamps();
             $table->softDeletes();

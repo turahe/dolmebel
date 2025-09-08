@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $categories = Category::whereNull('parent_id')->get();
 
-        return Inertia::render('Tailstore/Products/Catalog', [
+        return Inertia::render('Products/Catalog', [
             'categories' => $categories,
         ]);
     }

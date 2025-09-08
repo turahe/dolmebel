@@ -34,22 +34,20 @@ return new class extends Migration
                 } elseif ($type == 'integer') {
                     $table->integer('balance');
                 }            // Add userstamp columns
-            $userstampsType = config('userstamps.users_table_column_type', 'bigincrements');
-            if ($userstampsType === 'ulid') {
-                $table->ulid('created_by')->nullable()->index();
-                $table->ulid('updated_by')->nullable()->index();
-                $table->ulid('deleted_by')->nullable()->index();
-            } elseif ($userstampsType === 'uuid') {
-                $table->uuid('created_by')->nullable()->index();
-                $table->uuid('updated_by')->nullable()->index();
-                $table->uuid('deleted_by')->nullable()->index();
-            } else {
-                $table->unsignedBigInteger('created_by')->nullable()->index();
-                $table->unsignedBigInteger('updated_by')->nullable()->index();
-                $table->unsignedBigInteger('deleted_by')->nullable()->index();
-            }
-
-
+                $userstampsType = config('userstamps.users_table_column_type', 'bigincrements');
+                if ($userstampsType === 'ulid') {
+                    $table->ulid('created_by')->nullable()->index();
+                    $table->ulid('updated_by')->nullable()->index();
+                    $table->ulid('deleted_by')->nullable()->index();
+                } elseif ($userstampsType === 'uuid') {
+                    $table->uuid('created_by')->nullable()->index();
+                    $table->uuid('updated_by')->nullable()->index();
+                    $table->uuid('deleted_by')->nullable()->index();
+                } else {
+                    $table->unsignedBigInteger('created_by')->nullable()->index();
+                    $table->unsignedBigInteger('updated_by')->nullable()->index();
+                    $table->unsignedBigInteger('deleted_by')->nullable()->index();
+                }
 
                 $table->timestamps();
                 $table->softDeletes();

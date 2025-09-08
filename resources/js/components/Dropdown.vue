@@ -5,7 +5,11 @@
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
-        <div v-show="open" class="fixed inset-0 z-40" @click="open = false"></div>
+        <div
+            v-show="open"
+            class="fixed inset-0 z-40"
+            @click="open = false"
+        ></div>
 
         <transition
             enter-active-class="transition ease-out duration-200"
@@ -22,7 +26,10 @@
                 style="display: none"
                 @click="open = false"
             >
-                <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
+                <div
+                    class="ring-opacity-5 rounded-md ring-1 ring-black"
+                    :class="contentClasses"
+                >
                     <slot name="content" />
                 </div>
             </div>
@@ -31,42 +38,42 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 
 const props = defineProps({
     align: {
         type: String,
-        default: 'right',
+        default: "right",
     },
     width: {
         type: String,
-        default: '48',
+        default: "48",
     },
     contentClasses: {
         type: Array,
-        default: () => ['py-1', 'bg-white', 'dark:bg-gray-700'],
+        default: () => ["py-1", "bg-white", "dark:bg-gray-700"],
     },
-})
+});
 
-const open = ref(false)
+const open = ref(false);
 
 const widthClass = computed(() => {
     return {
-        '48': 'w-48',
-        '60': 'w-60',
-        '80': 'w-80',
-    }[props.width.toString()]
-})
+        48: "w-48",
+        60: "w-60",
+        80: "w-80",
+    }[props.width.toString()];
+});
 
 const positioningClasses = computed(() => {
-    if (props.align === 'left') {
-        return 'origin-top-left left-0'
+    if (props.align === "left") {
+        return "origin-top-left left-0";
     }
 
-    if (props.align === 'right') {
-        return 'origin-top-right right-0'
+    if (props.align === "right") {
+        return "origin-top-right right-0";
     }
 
-    return 'origin-top'
-})
+    return "origin-top";
+});
 </script>

@@ -4,21 +4,21 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Tailstore Routes
+// Product Routes
 Route::get('/', function () {
-    return Inertia::render('Tailstore/Home');
+    return Inertia::render('Product/Home');
 })->name('home');
 
 Route::get('/shop', function () {
-    return Inertia::render('Tailstore/Products/Catalog');
+    return Inertia::render('Product/Catalog');
 })->name('products.catalog');
 
 Route::get('/cart', function () {
-    return Inertia::render('Tailstore/Cart');
+    return Inertia::render('Product/Cart');
 })->name('cart');
 
 Route::get('/checkout', function () {
-    return Inertia::render('Tailstore/Checkout');
+    return Inertia::render('Product/Checkout');
 })->name('checkout');
 
 Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
